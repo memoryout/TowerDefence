@@ -7,12 +7,16 @@ package game.view
 	import flash.events.IOErrorEvent;
 	
 	import game.view.dispatcher.ViewDispatcher;
+	import game.view.displayList.DisplayListMainAppScreen;
+	import game.view.interfaces.IMainAppScreen;
 	
 	public class ViewRootModule extends ViewDispatcher implements IViewRootModule
 	{
 		private var _stage:				Stage;
 		
 		private var _isInit:			Boolean;
+		
+		private var _mainView:			IMainAppScreen;
 		
 		public function ViewRootModule()
 		{
@@ -39,12 +43,20 @@ package game.view
 		}
 		
 		
+		public function get mainAppScreen():IMainAppScreen
+		{
+			return _mainView;
+		}
+		
+		
 		private function handlerContext3DCreated(e:Event):void
 		{
 			_stage.stage3Ds[0].removeEventListener(Event.CONTEXT3D_CREATE, handlerContext3DCreated);
 			_stage.stage3Ds[0].removeEventListener(ErrorEvent.ERROR, handlerErrorCreateContext3D);
 			
 			// create Starling based engine;
+			
+			createDisplayListView();
 			
 			initComplete();
 		}
@@ -57,14 +69,23 @@ package game.view
 			
 			// create DisplayList based engine;
 			
+			createDisplayListView();
+			
 			initComplete();
+		}
+		
+		
+		private function createDisplayListView():void
+		{
+			_mainView = new DisplayListMainAppScreen();
+			_mainView.init( _stage );
 		}
 		
 		
 		private function initComplete():void
 		{
 			_isInit = true;
-			this.dispachEvent( ViewRootEvents.VIEW_INIT_COMPLETE );
+			this.dispachEvent( ViewRootEvents.VIEW_INIT_COMPLETE, this );
 		}
 	}
 }
