@@ -5,5 +5,7 @@ package game.task
 		public static const COMPLETE:		uint = 1;
 		public static const PROGRESS:		uint = 2;
 		public static const ERROR:			uint = 3;
+		
+		public static const LOAD_COMPLETED:	uint = 4;
 	}
 }
