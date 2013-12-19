@@ -5,6 +5,7 @@ package game.control
 	import flash.display.Stage;
 	
 	import game.control.boot.AppBootTask;
+	import game.control.game.MainGameController;
 	import game.control.view.MainViewController;
 	import game.control.view.MenuLogic;
 	import game.task.ISimpleTask;
@@ -21,6 +22,8 @@ package game.control
 		private var _mainViewController:	MainViewController;
 		
 		private var _menuLogic:				MenuLogic;
+		
+		private var _mainGameController:	MainGameController;
 		
 		public function AppRootModule()
 		{
@@ -42,16 +45,14 @@ package game.control
 		{
 			_viewModule 		= new ViewRootModule();
 			_mainViewController = new MainViewController();
-			_menuLogic 			= new MenuLogic();			
+			_menuLogic 			= new MenuLogic();
+			
+			_mainGameController = new MainGameController();
 		}
 				
 		private function handlerBootComplete(task:ISimpleTask):void
 		{
-			trace("handlerBootComplete");
-			
-			_mainViewController.addMenu();
-			
-			sendMessage(MenuEvents.SHOW_WINDOW, MenuData.MAIN_WINDOW_VIEW);
+			_mainViewController.initGame();
 		}
 	}
 }

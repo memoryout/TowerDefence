@@ -3,6 +3,8 @@ package game.control.view
 	import broadcast.BroadcastModule;
 	
 	import game.GameGlobalData;
+	import game.view.displayList.menu.MenuData;
+	import game.view.events.MenuEvents;
 	import game.view.interfaces.IMainAppScreen;
 	
 	public class MainViewController extends BroadcastModule
@@ -33,6 +35,14 @@ package game.control.view
 		public function addMenu():void
 		{
 			_mainAppScreen.addMenu();
+		}
+		
+		
+		public function initGame():void
+		{
+			addMenu();
+			
+			sendMessage(MenuEvents.SHOW_WINDOW, MenuData.MAIN_WINDOW_VIEW);
 		}
 	}
 }
