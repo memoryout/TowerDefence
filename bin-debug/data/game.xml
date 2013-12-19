@@ -1,0 +1,17 @@
+<data>
+	<world>
+		<map id="0" image="">
+			<title>Default title</title>
+			<desciption>Default description</desciption>
+			<points>
+				<point x="10" y="10" id="0" title="point 0"></point>
+				<point x="50" y="50" id="1" title="point 1"></point>
+			</points>
+		</map>
+	</world>
+	
+	<games>
+		<game id="0"></game>
+		<game id="1"></game>
+	</games>
+</data>

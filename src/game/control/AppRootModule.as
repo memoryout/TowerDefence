@@ -37,7 +37,7 @@ package game.control
 			var bootTask:AppBootTask = new AppBootTask();
 			bootTask.addListener(TaskEvent.COMPLETE, handlerBootComplete);
 			
-			bootTask.run( stage, _viewModule, _mainViewController );
+			bootTask.run( stage, _viewModule, _mainViewController, _mainGameController );
 		}
 		
 		
@@ -52,6 +52,8 @@ package game.control
 				
 		private function handlerBootComplete(task:ISimpleTask):void
 		{
+			task.destroy();
+			
 			_mainViewController.initGame();
 		}
 	}

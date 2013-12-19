@@ -2,7 +2,10 @@ package game.control.boot
 {
 	import flash.display.Stage;
 	
+	import game.control.game.MainGameController;
+	import game.control.tasks.LoadGameStaticData;
 	import game.control.view.MainViewController;
+	import game.errors.ErrorsDescription;
 	import game.task.SimpleTask;
 	import game.task.TaskEvent;
 	import game.view.IViewRootModule;
@@ -11,6 +14,7 @@ package game.control.boot
 	public class AppBootTask extends SimpleTask
 	{
 		private var _viewController:		MainViewController;
+		private var _mainGameController:	MainGameController;
 		
 		public function AppBootTask()
 		{
@@ -23,6 +27,7 @@ package game.control.boot
 			var viewRoot:IViewRootModule = args[1] as IViewRootModule;
 			
 			_viewController = args[2] as MainViewController;
+			_mainGameController = args[3] as MainGameController;
 			
 			viewRoot.addEventListener(ViewRootEvents.VIEW_INIT_COMPLETE, handlerViewInitComplete);
 			viewRoot.init( stage );
@@ -37,28 +42,60 @@ package game.control.boot
 			_viewController.showDefaultPreloader();
 			
 			loadGameSource();
-			
-			trace("handlerViewInitComplete");
 		}
 		
-		
+		//-------------------------------------- load game source -----------
 		private function loadGameSource():void
 		{
 			var loader:SourceLoader = new SourceLoader();
 			loader.addListener(TaskEvent.COMPLETE, handlerSourceLoadComplete);
+			loader.addListener(TaskEvent.ERROR, handlerErrorLoadSources);
 			loader.run( TowerDefenceData.SOURCE_LOCAL_URL );
+		}
+		
+		
+		private function handlerErrorLoadSources(task:SimpleTask):void
+		{
+			task.destroy();
+			this.dispachLocalEvent( TaskEvent.ERROR, ErrorsDescription.ERROR_LOAD_GAME_SOURCE_FILE );
 		}
 		
 		private function handlerSourceLoadComplete(task:SimpleTask):void
 		{		
 			task.destroy();
-					
-			loadSavedData();	
+			
+			loadStaticData();
 			
 			_viewController.removeDefaultPreloader();
 		}
 		
 		
+		
+		//-------------------------------------- load game static data -----------
+		private function loadStaticData():void
+		{
+			var staticDataLoader:LoadGameStaticData = new LoadGameStaticData();
+			staticDataLoader.addListener(TaskEvent.COMPLETE, handlerLoadStaticData);
+			staticDataLoader.addListener(TaskEvent.ERROR, handlerErrorLoadStaticData);
+			staticDataLoader.run( TowerDefenceData.STATIC_GAME_DATA, _mainGameController );
+		}
+		
+		private function handlerErrorLoadStaticData(error:String):void
+		{
+			this.dispachLocalEvent( TaskEvent.ERROR, error );
+		}
+		
+		
+		private function handlerLoadStaticData(task:SimpleTask):void
+		{
+			task.destroy();
+			loadSavedData();
+		}
+		
+		
+		
+		
+		//-------------------------------------- load saved data -----------
 		private function loadSavedData():void
 		{
 			var savedDataLoader:LoadSavedData = new LoadSavedData();
