@@ -12,7 +12,7 @@ package game.view.displayList
 	{
 		private var _defaultPreloader:			DefaultPreloader;
 		
-		private var _menuWindowController:			MenuWindowController;
+		private var _menuWindowController:		MenuWindowController;
 		
 		private var _contentContainer:			Sprite;
 		

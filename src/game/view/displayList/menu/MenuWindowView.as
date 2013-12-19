@@ -2,6 +2,9 @@ package game.view.displayList.menu
 {
 	import flash.display.Sprite;
 	import flash.utils.Dictionary;
+	
+	import game.view.displayList.menu.main.MainWindowView;
+	import game.view.displayList.menu.upgrades.UpgradesWindowView;
 
 	public class MenuWindowView extends Sprite
 	{
@@ -13,18 +16,38 @@ package game.view.displayList.menu
 		{
 			_registeredWindows = new Dictionary();
 			
-//			_registeredWindows[""] 		= ;			
-//			_registeredWindows[""] 		= ;				
+			_registeredWindows[MenuData.MAIN_WINDOW_VIEW] 		= MainWindowView;			
+			_registeredWindows[MenuData.UPGRADES_WINDOW_VIEW] 	= UpgradesWindowView;			
+			
 		}
 		
 		public function openWindow(windowName:String):void
 		{
-//			_currentWindow.open();
+			if(_currentWindow)
+			{
+				if(_currentWindow.pageName == windowName) return;
+								
+				_currentWindow.close();
+				_currentWindow = null;
+			}
+			
+			if(_registeredWindows[windowName])
+			{
+				_currentWindow = new _registeredWindows[windowName]();
+				_currentWindow.name = windowName;
+				_currentWindow.open();
+				
+				this.addChild(_currentWindow);	
+			}
 		}
 		
 		public function closeWindow(windowName:String):void
 		{
-//			_currentWindow.close();
+			if(_currentWindow && _currentWindow.pageName == windowName) 
+			{
+				_currentWindow.close();
+				_currentWindow = null;
+			}
 		}
 	}
 }

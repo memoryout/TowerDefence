@@ -6,6 +6,7 @@ package game.view.displayList.menu
 	import flash.display.Sprite;
 	
 	import game.view.dispatcher.ViewDispatcher;
+	import game.view.events.MenuEvents;
 
 	public class MenuWindowController extends BroadcastModule 
 	{
@@ -14,9 +15,18 @@ package game.view.displayList.menu
 		
 		public function MenuWindowController(contentContainer:Sprite)
 		{
+			_contentContainer = contentContainer;
+			
 			_menuWindowView = new MenuWindowView();		
 			_contentContainer.addChild(_menuWindowView);
+			
+			addMessages();
 		}		
+		
+		private function addMessages():void
+		{
+			addMessageListener(MenuEvents.SHOW_WINDOW);
+		}
 		
 		private function showWindow(windowName:String):void
 		{
@@ -29,8 +39,15 @@ package game.view.displayList.menu
 		}
 		
 		override public function receiveMessage(message:MessageData):void 
-		{
-			
+		{			
+			switch(message.message)
+			{	
+				case MenuEvents.SHOW_WINDOW:
+				{
+					showWindow(message.data);
+					break;
+				}
+			}
 		}
 	}
 }

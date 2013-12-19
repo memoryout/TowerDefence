@@ -6,16 +6,21 @@ package game.control
 	
 	import game.control.boot.AppBootTask;
 	import game.control.view.MainViewController;
+	import game.control.view.MenuLogic;
 	import game.task.ISimpleTask;
 	import game.task.TaskEvent;
 	import game.view.IViewRootModule;
 	import game.view.ViewRootModule;
+	import game.view.displayList.menu.MenuData;
+	import game.view.events.MenuEvents;
 	
 	public class AppRootModule extends BroadcastModule
 	{
 		private var _viewModule:			IViewRootModule;
 		
 		private var _mainViewController:	MainViewController;
+		
+		private var _menuLogic:				MenuLogic;
 		
 		public function AppRootModule()
 		{
@@ -35,8 +40,9 @@ package game.control
 		
 		private function initModules():void
 		{
-			_viewModule = new ViewRootModule();
+			_viewModule 		= new ViewRootModule();
 			_mainViewController = new MainViewController();
+			_menuLogic 			= new MenuLogic();			
 		}
 				
 		private function handlerBootComplete(task:ISimpleTask):void
@@ -44,6 +50,8 @@ package game.control
 			trace("handlerBootComplete");
 			
 			_mainViewController.addMenu();
+			
+			sendMessage(MenuEvents.SHOW_WINDOW, MenuData.MAIN_WINDOW_VIEW);
 		}
 	}
 }

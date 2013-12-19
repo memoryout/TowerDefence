@@ -7,14 +7,12 @@ package game.control.view
 	
 	public class MainViewController extends BroadcastModule
 	{
-		private var _mainAppScreen:			IMainAppScreen;
-		
+		private var _mainAppScreen:			IMainAppScreen;		
 		
 		public function MainViewController()
 		{
 			super();
-		}
-		
+		}		
 		
 		public function setMainAppScreen(screen:IMainAppScreen):void
 		{

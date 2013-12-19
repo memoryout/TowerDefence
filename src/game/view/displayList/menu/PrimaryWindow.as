@@ -13,6 +13,8 @@ package game.view.displayList.menu
 		private var open_tween:		TweenLite;
 		private var close_tween:	TweenLite;
 		
+		public var pageName:		String;
+		
 		public function PrimaryWindow()
 		{
 			this.alpha = 0;
