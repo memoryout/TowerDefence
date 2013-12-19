@@ -4,7 +4,7 @@ package game.errors
 	{
 		
 		
-		public static const ERROR_LOAD_GAME_SOURCE_FILE:			uint = "Error load game source file";
-		public static const ERROR_LOAD_GAME_STATIC_DATA:			uint = "Error load game static data";
+		public static const ERROR_LOAD_GAME_SOURCE_FILE:			String = "Error load game source file";
+		public static const ERROR_LOAD_GAME_STATIC_DATA:			String = "Error load game static data";
 	}
 }

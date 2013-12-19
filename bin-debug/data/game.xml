@@ -4,8 +4,8 @@
 			<title>Default title</title>
 			<desciption>Default description</desciption>
 			<points>
-				<point x="10" y="10" id="0" title="point 0"></point>
-				<point x="50" y="50" id="1" title="point 1"></point>
+				<point x="10" y="10" id="0" title="point 0" map="0"></point>
+				<point x="50" y="50" id="1" title="point 1" map="1"></point>
 			</points>
 		</map>
 	</world>

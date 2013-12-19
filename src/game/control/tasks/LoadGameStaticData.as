@@ -1,11 +1,14 @@
 package game.control.tasks
 {
+	import broadcast.message.MessageData;
+	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
 	import game.control.game.MainGameController;
+	import game.core.data.StaticDataManagerCommands;
 	import game.errors.ErrorsDescription;
 	import game.task.SimpleTask;
 	import game.task.TaskEvent;
@@ -33,7 +36,7 @@ package game.control.tasks
 		}
 		
 		
-		private function handlerErrorLoadData(e:Event):void
+		private function handlerErrorLoadData(e:IOErrorEvent):void
 		{
 			e.currentTarget.removeEventListener(Event.COMPLETE, handlerLoadData);
 			e.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, handlerErrorLoadData);
@@ -43,7 +46,7 @@ package game.control.tasks
 		}
 		
 		
-		private function handlerLoadData(e:IOErrorEvent):void
+		private function handlerLoadData(e:Event):void
 		{
 			e.currentTarget.removeEventListener(Event.COMPLETE, handlerLoadData);
 			e.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, handlerErrorLoadData);
@@ -54,7 +57,22 @@ package game.control.tasks
 		
 		private function parserStaticData(data:String):void
 		{
-			this.dispachLocalEvent( TaskEvent.COMPLETE, this );
+			this.addMessageListener( StaticDataManagerCommands.EVENT_PARSING_COMPLETE );
+			this.sendMessage( StaticDataManagerCommands.PARSE_STATIC_DATA, data);
+			
+			//this.dispachLocalEvent( TaskEvent.COMPLETE, this );
+		}
+		
+		override public function receiveMessage(message:MessageData):void
+		{
+			switch(message.message)
+			{
+				case StaticDataManagerCommands.EVENT_PARSING_COMPLETE:
+				{
+					this.dispachLocalEvent( TaskEvent.COMPLETE, this );
+					break;
+				}
+			}
 		}
 	}
 }
