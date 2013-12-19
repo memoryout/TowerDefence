@@ -11,5 +11,7 @@ package game.view.interfaces
 		function showDefaultPreloaderScreen():void;
 		
 		function removeDefaultPreloader():void;
+		
+		function addMenu():void;
 	}
 }

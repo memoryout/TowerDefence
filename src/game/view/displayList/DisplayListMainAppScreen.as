@@ -3,12 +3,16 @@ package game.view.displayList
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	
+	import game.view.displayList.menu.MenuWindowController;
+	import game.view.displayList.menu.MenuWindowView;
 	import game.view.displayList.preloader.DefaultPreloader;
 	import game.view.interfaces.IMainAppScreen;
 	
 	public class DisplayListMainAppScreen extends Sprite implements IMainAppScreen
 	{
 		private var _defaultPreloader:			DefaultPreloader;
+		
+		private var _menuWindowController:			MenuWindowController;
 		
 		private var _contentContainer:			Sprite;
 		
@@ -49,8 +53,10 @@ package game.view.displayList
 			_defaultPreloader = null;
 		}
 		
-		
-		
+		public function addMenu():void
+		{			
+			_menuWindowController = new MenuWindowController(_contentContainer);			
+		}	
 		
 		private function fitContentToScreen():void
 		{

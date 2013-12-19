@@ -50,10 +50,12 @@ package game.control.boot
 		}
 		
 		private function handlerSourceLoadComplete(task:SimpleTask):void
-		{
+		{		
 			task.destroy();
+					
+			loadSavedData();	
 			
-			loadSavedData();
+			_viewController.removeDefaultPreloader();
 		}
 		
 		
@@ -70,7 +72,7 @@ package game.control.boot
 		{
 			task.destroy();
 			
-			this.dispachLocalEvent( TaskEvent.COMPLETE, this );
+			this.dispachLocalEvent( TaskEvent.COMPLETE, this );	
 		}
 		
 		

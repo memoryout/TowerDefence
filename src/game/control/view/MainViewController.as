@@ -26,5 +26,15 @@ package game.control.view
 		{
 			_mainAppScreen.showDefaultPreloaderScreen();
 		}
+		
+		public function removeDefaultPreloader():void
+		{
+			_mainAppScreen.removeDefaultPreloader();
+		}
+		
+		public function addMenu():void
+		{
+			_mainAppScreen.addMenu();
+		}
 	}
 }

@@ -42,6 +42,8 @@ package game.control
 		private function handlerBootComplete(task:ISimpleTask):void
 		{
 			trace("handlerBootComplete");
+			
+			_mainViewController.addMenu();
 		}
 	}
 }
