@@ -3,6 +3,8 @@ package game.view.displayList.menu
 	import flash.display.Sprite;
 	import flash.utils.Dictionary;
 	
+	import game.view.displayList.menu.achievements.AchievementsWindowView;
+	import game.view.displayList.menu.info.InfoWindowView;
 	import game.view.displayList.menu.main.MainWindowView;
 	import game.view.displayList.menu.upgrades.UpgradesWindowView;
 
@@ -16,8 +18,10 @@ package game.view.displayList.menu
 		{
 			_registeredWindows = new Dictionary();
 			
-			_registeredWindows[MenuData.MAIN_WINDOW_VIEW] 		= MainWindowView;			
-			_registeredWindows[MenuData.UPGRADES_WINDOW_VIEW] 	= UpgradesWindowView;			
+			_registeredWindows[MenuData.MAIN_WINDOW_VIEW] 			= MainWindowView;			
+			_registeredWindows[MenuData.UPGRADES_WINDOW_VIEW] 		= UpgradesWindowView;
+			_registeredWindows[MenuData.INFO_WINDOW_VIEW] 			= InfoWindowView;		
+			_registeredWindows[MenuData.ACHIEVEMENTS_WINDOW_VIEW] 	= AchievementsWindowView;				
 			
 		}
 		
