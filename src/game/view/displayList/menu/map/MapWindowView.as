@@ -1,4 +1,4 @@
-package game.view.displayList.menu.achievements
+package game.view.displayList.menu.map
 {
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -8,24 +8,24 @@ package game.view.displayList.menu.achievements
 	import game.view.displayList.menu.MenuData;
 	import game.view.displayList.menu.PrimaryWindow;
 
-	public class AchievementsWindowView extends PrimaryWindow
+	public class MapWindowView extends PrimaryWindow
 	{
-		private const CLASS_NAME:		String = "AchievementsWindow";
+		private const CLASS_NAME:		String = "MapWindow";
 		
 		private const BTN_CLOSE_NAME:	String = "BtnClose";
 		
-		private var _controller:		AchievementsWindowController;
+		private var _controller:		MapWindowController;
 		
 		private var btnClose:			MovieClip;
 		
-		public function AchievementsWindowView()
+		public function MapWindowView()
 		{
 			super();
 			
 			addLinks();
 			addListeners();
 			
-			_controller = new AchievementsWindowController(this);		
+			_controller = new MapWindowController(this);		
 		}
 		
 		private function addLinks():void

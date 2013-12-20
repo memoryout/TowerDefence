@@ -5,13 +5,17 @@ package game.view.displayList.menu.info
 	import flash.events.MouseEvent;
 	import flash.system.ApplicationDomain;
 	
+	import game.view.displayList.menu.MenuData;
 	import game.view.displayList.menu.PrimaryWindow;
 
 	public class InfoWindowView extends PrimaryWindow
 	{
-		private const CLASS_NAME:String = "InfoWindow";
+		private const CLASS_NAME:		String = "InfoWindow";
+		
+		private const BTN_CLOSE_NAME:	String = "BtnClose";
 		
 		private var _controller:		InfoWindowController;
+		private var btnClose:			MovieClip;
 		
 		public function InfoWindowView()
 		{
@@ -29,16 +33,19 @@ package game.view.displayList.menu.info
 			var _viewElement:MovieClip = new _viewClass();
 			
 			addChild(_viewElement);		
+			
+			btnClose = _viewElement.getChildByName(BTN_CLOSE_NAME) as MovieClip;
 		}
 		
 		private function addListeners():void
 		{
-			
+			btnClose.addEventListener(MouseEvent.CLICK, mClick);
+			btnClose.buttonMode = true;
 		}
 		
 		private function mClick(e:MouseEvent):void
 		{
-			_controller.showNextWindow(e.target.name);
+			_controller.showNextWindow(MenuData.MAIN_WINDOW_VIEW);
 		}
 	}
 }

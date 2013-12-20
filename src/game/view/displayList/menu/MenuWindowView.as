@@ -6,6 +6,7 @@ package game.view.displayList.menu
 	import game.view.displayList.menu.achievements.AchievementsWindowView;
 	import game.view.displayList.menu.info.InfoWindowView;
 	import game.view.displayList.menu.main.MainWindowView;
+	import game.view.displayList.menu.map.MapWindowView;
 	import game.view.displayList.menu.upgrades.UpgradesWindowView;
 
 	public class MenuWindowView extends Sprite
@@ -22,6 +23,7 @@ package game.view.displayList.menu
 			_registeredWindows[MenuData.UPGRADES_WINDOW_VIEW] 		= UpgradesWindowView;
 			_registeredWindows[MenuData.INFO_WINDOW_VIEW] 			= InfoWindowView;		
 			_registeredWindows[MenuData.ACHIEVEMENTS_WINDOW_VIEW] 	= AchievementsWindowView;				
+			_registeredWindows[MenuData.MAP_WINDOW_VIEW] 			= MapWindowView;				
 			
 		}
 		
