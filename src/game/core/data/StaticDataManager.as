@@ -5,7 +5,7 @@ package game.core.data
 	
 	public class StaticDataManager extends BroadcastModule
 	{
-		private const _maps:			Vector.<MapData> = new Vector.<MapData>;
+		private const _maps:			Vector.<StaticMapData> = new Vector.<StaticMapData>;
 		
 		
 		public function StaticDataManager()
@@ -19,6 +19,7 @@ package game.core.data
 		private function initListener():void
 		{
 			this.addMessageListener( StaticDataManagerCommands.PARSE_STATIC_DATA );
+			this.addMessageListener( StaticDataManagerCommands.GET_ALL_MAPS_DATA );
 		}
 		
 		
@@ -29,6 +30,12 @@ package game.core.data
 				case StaticDataManagerCommands.PARSE_STATIC_DATA:
 				{
 					parseData(message.data as String)
+					break;
+				}
+					
+				case StaticDataManagerCommands.GET_ALL_MAPS_DATA:
+				{
+					message.data = _maps;
 					break;
 				}
 			}
@@ -65,30 +72,30 @@ package game.core.data
 			var world:XMLList = xml.world;
 			var pointsXML:XMLList;
 			
-			var par:String, mapData:MapData, pointData:MapPoint, par2:String;
+			var par:String, mapData:StaticMapData, pointData:StaticMapPointData, par2:String;
 			for(par in world.*)
 			{
 				if( world.*[par].name() == "map" )
 				{
-					mapData = new MapData();
-					mapData.setId( uint(world.*[par].@id) );
-					mapData.setImage( String(world.*[par].@image) );
+					mapData = new StaticMapData();
+					mapData.id = uint(world.*[par].@id);
+					mapData.image = String(world.*[par].@image);
 					
-					mapData.setTitle( String( world.*[par].title) );
-					mapData.setDescription( String( world.*[par].desciption) );
+					mapData.title = String( world.*[par].title);
+					mapData.description = String( world.*[par].desciption);
 					
 					pointsXML = world.*[par].points;
 					
 					for(par2 in pointsXML.*)
 					{
-						pointData = new MapPoint();
-						pointData.setX( int(pointsXML.*[par].@x) );
-						pointData.setY( int(pointsXML.*[par].@y) );
-						pointData.setId( uint(pointsXML.*[par].@id) );
-						pointData.setMapId( uint(pointsXML.*[par].@map) );
-						pointData.setTitle( String(pointsXML.*[par].@title) );
+						pointData = new StaticMapPointData();
+						pointData.x = int(pointsXML.*[par].@x);
+						pointData.y = int(pointsXML.*[par].@y);
+						pointData.id = uint(pointsXML.*[par].@id);
+						pointData.mapId = uint(pointsXML.*[par].@map);
+						pointData.title = String(pointsXML.*[par].@title);
 						
-						mapData.addMapPoint( pointData );
+						mapData.points.push( pointData );
 					}
 					
 					_maps.push( mapData );

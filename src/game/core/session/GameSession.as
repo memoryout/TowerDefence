@@ -1,6 +1,6 @@
 package game.core.session
 {
-	import game.core.data.MapData;
+	import game.core.data.StaticMapData;
 
 	public class GameSession
 	{

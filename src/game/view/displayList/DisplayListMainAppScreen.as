@@ -64,9 +64,9 @@ package game.view.displayList
 			
 			screenWidht = Math.max(this.stage.fullScreenWidth, this.stage.fullScreenHeight);
 			screenHeight = Math.min(this.stage.fullScreenWidth, this.stage.fullScreenHeight);
-			
-			
-			contentWidth = Math.min( screenWidht, _sourceWidth );
+						
+			//contentWidth = Math.min( screenWidht, _sourceWidth );
+			contentWidth =  screenWidht;
 			
 			scale = contentWidth / _sourceWidth;
 			

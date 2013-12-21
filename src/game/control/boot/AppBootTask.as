@@ -89,36 +89,6 @@ package game.control.boot
 		private function handlerLoadStaticData(task:SimpleTask):void
 		{
 			task.destroy();
-			loadSavedData();
-		}
-		
-		
-		
-		
-		//-------------------------------------- load saved data -----------
-		private function loadSavedData():void
-		{
-			var savedDataLoader:LoadSavedData = new LoadSavedData();
-			savedDataLoader.addListener( TaskEvent.COMPLETE, handlerSavedDataLoaded);
-			savedDataLoader.addListener( TaskEvent.ERROR, handlerErrorLoadSaveData);
-			savedDataLoader.run( TowerDefenceData.SAVED_DATA_URL );
-		}
-		
-		
-		private function handlerSavedDataLoaded(task:SimpleTask):void
-		{
-			task.destroy();
-			
-			this.dispachLocalEvent( TaskEvent.COMPLETE, this );	
-		}
-		
-		
-		private function handlerErrorLoadSaveData(task:SimpleTask):void
-		{
-			task.destroy();
-			
-			_mainGameController.initDefaultUser();
-			
 			this.dispachLocalEvent( TaskEvent.COMPLETE, this );
 		}
 	}

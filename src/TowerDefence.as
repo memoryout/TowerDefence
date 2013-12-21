@@ -29,6 +29,8 @@ package
 		{
 			NativeApplication.nativeApplication.removeEventListener(InvokeEvent.INVOKE, handlerInvoke);
 			
+			stage.color = 0x0;
+			
 			_appRootModule = new AppRootModule();
 			_appRootModule.init( this.stage );
 			
