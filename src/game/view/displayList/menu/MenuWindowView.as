@@ -2,8 +2,10 @@ package game.view.displayList.menu
 {
 	import flash.display.Sprite;
 	import flash.utils.Dictionary;
+	import flash.utils.Endian;
 	
 	import game.view.displayList.menu.achievements.AchievementsWindowView;
+	import game.view.displayList.menu.additional_window.start_game.StartGameWindowView;
 	import game.view.displayList.menu.info.InfoWindowView;
 	import game.view.displayList.menu.main.MainWindowView;
 	import game.view.displayList.menu.map.MapWindowView;
@@ -23,7 +25,9 @@ package game.view.displayList.menu
 			_registeredWindows[MenuData.UPGRADES_WINDOW_VIEW] 		= UpgradesWindowView;
 			_registeredWindows[MenuData.INFO_WINDOW_VIEW] 			= InfoWindowView;		
 			_registeredWindows[MenuData.ACHIEVEMENTS_WINDOW_VIEW] 	= AchievementsWindowView;				
-			_registeredWindows[MenuData.MAP_WINDOW_VIEW] 			= MapWindowView;				
+			_registeredWindows[MenuData.MAP_WINDOW_VIEW] 			= MapWindowView;	
+			_registeredWindows[MenuData.START_GAME_WINDOW_VIEW] 	= StartGameWindowView;	
+//			_registeredWindows[MenuData.END_GAME_WINDOW_VIEW] 		= ;	
 			
 		}
 		

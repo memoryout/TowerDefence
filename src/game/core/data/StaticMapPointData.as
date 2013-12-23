@@ -10,7 +10,7 @@ package game.core.data
 		public var id:			uint;
 		public var title:		String;
 		public var mapId:		uint;
-		
+		public var stars:		int;
 		
 		public function StaticMapPointData()
 		{

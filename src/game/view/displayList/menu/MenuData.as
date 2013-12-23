@@ -7,5 +7,8 @@ package game.view.displayList.menu
 		public static const INFO_WINDOW_VIEW:			String = "infoWindowView";
 		public static const ACHIEVEMENTS_WINDOW_VIEW:	String = "achievementsWindowView";
 		public static const MAP_WINDOW_VIEW:			String = "mapWindowView";
+		
+		public static const START_GAME_WINDOW_VIEW:		String = "startGameWindowView";
+		public static const END_GAME_WINDOW_VIEW:		String = "endGameWindowView";
 	}
 }

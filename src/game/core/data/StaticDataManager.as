@@ -89,11 +89,12 @@ package game.core.data
 					for(par2 in pointsXML.*)
 					{
 						pointData = new StaticMapPointData();
-						pointData.x = int(pointsXML.*[par].@x);
-						pointData.y = int(pointsXML.*[par].@y);
-						pointData.id = uint(pointsXML.*[par].@id);
-						pointData.mapId = uint(pointsXML.*[par].@map);
-						pointData.title = String(pointsXML.*[par].@title);
+						pointData.x = int(pointsXML.*[par2].@x);
+						pointData.y = int(pointsXML.*[par2].@y);
+						pointData.id = uint(pointsXML.*[par2].@id);
+						pointData.mapId = uint(pointsXML.*[par2].@map);
+						pointData.title = String(pointsXML.*[par2].@title);
+						pointData.stars = int(pointsXML.*[par2].@stars);
 						
 						mapData.points.push( pointData );
 					}

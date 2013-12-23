@@ -1,12 +1,16 @@
 <data>
 	<world>
-		<map id="0" image="">
-			<title>Default title</title>
-			<desciption>Default description</desciption>
+		<map id="0" image="LightWorld">
+			<title>Light</title>
+			<desciption>Light</desciption>
 			<points>
-				<point x="10" y="10" id="0" title="point 0" map="0"></point>
-				<point x="50" y="50" id="1" title="point 1" map="1"></point>
+				<point x="90" y="350" id="1" title="point 1" map="1" stars = "0"></point>
 			</points>
+		</map>		
+		<map id="1" image="DarkWorld">
+			<title>Dark</title>
+			<desciption>Dark</desciption>
+			<points></points>
 		</map>
 	</world>
 	

@@ -20,10 +20,10 @@ package game.view.displayList.menu
 			_menuWindowView = new MenuWindowView();		
 			_contentContainer.addChild(_menuWindowView);
 			
-			addMessages();
+			initListener();
 		}		
 		
-		private function addMessages():void
+		private function initListener():void
 		{
 			addMessageListener(MenuEvents.SHOW_WINDOW);
 		}
