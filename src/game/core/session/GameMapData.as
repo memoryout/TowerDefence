@@ -68,7 +68,15 @@ package game.core.session
 		
 		public function getPointsData():Vector.<IMapPoint>
 		{
-			return null;
+			var v:Vector.<IMapPoint> = new Vector.<IMapPoint>;
+			var i:int;
+			
+			for(i = 0; i < _points.length; i++)
+			{
+				v[i] = _points[i] as IMapPoint;
+			}
+			
+			return v;
 		}
 	}
 }

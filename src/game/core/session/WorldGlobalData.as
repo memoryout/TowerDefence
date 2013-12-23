@@ -20,7 +20,14 @@ package game.core.session
 		
 		public function getMaps():Vector.<IMapData>
 		{
-			return _maps as Vector.<IMapData>;
+			var v:Vector.<IMapData> = new Vector.<IMapData>;
+			var i:int;
+			for(i = 0; i < _maps.length; i++)
+			{
+				v.push(_maps[i] as IMapData);
+			}
+			
+			return v;
 		}
 	}
 }

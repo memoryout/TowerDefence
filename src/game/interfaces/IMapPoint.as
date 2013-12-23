@@ -4,6 +4,7 @@ package game.interfaces
 	{
 		function get x():int;
 		function get y():int;
+		function get stars():uint;
 		
 		function get id():uint;
 		function get title():String;

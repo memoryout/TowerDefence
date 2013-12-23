@@ -7,6 +7,7 @@ package game.view.displayList.menu.map
 	import flash.events.MouseEvent;
 	import flash.system.ApplicationDomain;
 	
+	import game.interfaces.IMapPoint;
 	import game.view.displayList.menu.MenuData;
 	import game.view.displayList.menu.PrimaryWindow;
 	
@@ -129,7 +130,7 @@ package game.view.displayList.menu.map
 		 * @param points - data about points on simple part of map.
 		 * 
 		 */		
-		public function createPrimaryLocation(id:int, title_description:Array, image_name:String, enable_status:Boolean, points:Object):void
+		public function createPrimaryLocation(id:int, title_description:Array, image_name:String, enable_status:Boolean, points:Vector.<IMapPoint>):void
 		{
 			// add new element to "primaryPartsOfMapContainer" with name "image_name"
 			var _primaryMapClass:Class = ApplicationDomain.currentDomain.getDefinition(image_name) as Class;

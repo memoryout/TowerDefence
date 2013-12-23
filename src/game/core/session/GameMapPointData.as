@@ -42,5 +42,10 @@ package game.core.session
 		{
 			return _pointData.mapId;
 		}
+		
+		public function get stars():uint
+		{
+			return 0;
+		}
 	}
 }
