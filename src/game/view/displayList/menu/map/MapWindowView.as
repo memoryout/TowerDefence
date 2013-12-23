@@ -27,7 +27,6 @@ package game.view.displayList.menu.map
 		private var singleWidth:				Number;
 		
 		private var _tween_t:					TweenLite;
-		private var blockMoving:				Boolean;
 		
 		public function MapWindowView()
 		{
@@ -76,7 +75,7 @@ package game.view.displayList.menu.map
 		
 		private function mDownPrimaryPartsOfMapContainer(e:MouseEvent):void
 		{
-			initX 		= e.stageX;
+			initX 		= e.stageX - primaryPartsOfMapContainer.x;
 			singleWidth	= primaryPartsOfMapContainer.width/primaryPartsOfMapContainer.numChildren; 
 			
 			primaryPartsOfMapContainer.addEventListener(MouseEvent.MOUSE_MOVE,  moveMaps);
@@ -87,48 +86,30 @@ package game.view.displayList.menu.map
 		{
 			primaryPartsOfMapContainer.y = 0;
 			
-			
-			if(!blockMoving) {
-				if(primaryPartsOfMapContainer.x < 0)	primaryPartsOfMapContainer.x = e.stageX + initX;
-				else									primaryPartsOfMapContainer.x = e.stageX - initX;
-			}
+		
+			/*	if(primaryPartsOfMapContainer.x < 0)	*/primaryPartsOfMapContainer.x = e.stageX - initX;		
 				
-				if(primaryPartsOfMapContainer.x >= 0) 
+				if(primaryPartsOfMapContainer.x > 0) 
 					finalMove(0);
-				else if(primaryPartsOfMapContainer.x <= (singleWidth*(primaryPartsOfMapContainer.numChildren - 1)*(-1)))
+				else if(primaryPartsOfMapContainer.x < (singleWidth*(primaryPartsOfMapContainer.numChildren - 1)*(-1)))
 					finalMove( singleWidth*(primaryPartsOfMapContainer.numChildren - 1)*(-1) );	
+				
+				trace(primaryPartsOfMapContainer.x);
 											
 		}		
 		
 		private function finalMove(_x:Number):void
 		{
 			primaryPartsOfMapContainer.removeEventListener(MouseEvent.MOUSE_MOVE, moveMaps);		
-			
-			blockMoving = true;
-			trace(_x);
-			
+		
 			if(_tween_t) _tween_t.kill();
 			
-			_tween_t = TweenLite.to(primaryPartsOfMapContainer, 0.5, {x:_x, onComplete:function():void{blockMoving = false;}});	
+			_tween_t = TweenLite.to(primaryPartsOfMapContainer, 0.5, {x:_x});	
 		}
 		
 		private function moveEnd(e:MouseEvent):void
 		{
-			primaryPartsOfMapContainer.removeEventListener(MouseEvent.MOUSE_MOVE,  moveMaps);
-			
-			var _delta:Number = e.stageX - initX;
-			
-			trace(_delta);
-			
-			if(_delta > 100 &&
-				primaryPartsOfMapContainer.x >= (singleWidth*(primaryPartsOfMapContainer.numChildren - 1)*(-1)))		 // left
-			{
-				finalMove( singleWidth*(primaryPartsOfMapContainer.numChildren - 1));
-				
-			}else if(_delta < -100 && primaryPartsOfMapContainer.x <= 0) // right
-			{
-				finalMove( singleWidth*(primaryPartsOfMapContainer.numChildren - 1)*(-1));
-			}
+			primaryPartsOfMapContainer.removeEventListener(MouseEvent.MOUSE_MOVE,  moveMaps);			
 		}
 		
 		/**
