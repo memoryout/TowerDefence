@@ -15,7 +15,34 @@
 	</world>
 	
 	<games>
-		<game id="0"></game>
-		<game id="1"></game>
+		<game id="0" image="DarkWorld">
+			<map>
+				<row>1,1,1,1,1,1,1,2,1,1</row>
+				<row>1,1,1,1,1,1,1,2,1,1</row>
+				<row>1,1,1,1,1,1,1,2,1,1</row>
+				<row>1,1,1,1,1,1,1,2,1,1</row>
+				<row>1,1,1,1,1,1,1,2,1,1</row>
+				<row>1,1,2,2,2,2,2,2,1,1</row>
+				<row>1,1,2,1,1,1,1,1,1,1</row>
+				<row>1,1,2,1,1,1,1,1,1,1</row>
+				<row>1,1,2,1,1,1,1,1,1,1</row>
+				<row>1,1,2,1,1,1,1,1,1,1</row>
+			</map>
+			<waves>
+				<wave quantity="10" time="0.2" startTime="0">
+					<mob id="0"></mob>
+				</wave>
+				<wave quantity="20" time="0.5" startTime="5">
+					<mob id="0"></mob>
+				</wave>
+			</waves>
+		</game>
 	</games>
+	
+	<mobs>
+		<mob id="0" pps="5" dmg="1" type="ground" health="50" skin="default">
+			<title>default mob title</title>
+			<description>mob description</description>
+		</mob>
+	</mobs>
 </data>

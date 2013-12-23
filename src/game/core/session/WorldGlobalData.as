@@ -6,28 +6,24 @@ package game.core.session
 	public class WorldGlobalData implements IGlobalMapData
 	{
 		private var _maps:				Vector.<GameMapData>;
+		private var _IMaps:				Vector.<IMapData>;
 		
 		public function WorldGlobalData()
 		{
 			_maps = new Vector.<GameMapData>;
+			_IMaps = new Vector.<IMapData>;
 		}
 		
 		
 		public function addMap(mapData:GameMapData):void
 		{
 			_maps.push( mapData );
+			_IMaps.push( mapData )
 		}
 		
 		public function getMaps():Vector.<IMapData>
 		{
-			var v:Vector.<IMapData> = new Vector.<IMapData>;
-			var i:int;
-			for(i = 0; i < _maps.length; i++)
-			{
-				v.push(_maps[i] as IMapData);
-			}
-			
-			return v;
+			return _IMaps;
 		}
 	}
 }

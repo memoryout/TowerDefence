@@ -12,11 +12,13 @@ package game.core.session
 		private var _locked:			Boolean;
 		
 		private var _points:			Vector.<GameMapPointData>;
+		private var _IPoints:			Vector.<IMapPoint>;
 		
 		public function GameMapData()
 		{
 			_locked = true;
 			_points = new Vector.<GameMapPointData>;
+			_IPoints = new Vector.<IMapPoint>;
 		}
 		
 		
@@ -31,6 +33,7 @@ package game.core.session
 				pointData.setStaticData( _mapData.points[i] );
 				
 				_points.push( pointData );
+				_IPoints.push( pointData );
 			}
 		}
 				
@@ -68,15 +71,7 @@ package game.core.session
 		
 		public function getPointsData():Vector.<IMapPoint>
 		{
-			var v:Vector.<IMapPoint> = new Vector.<IMapPoint>;
-			var i:int;
-			
-			for(i = 0; i < _points.length; i++)
-			{
-				v[i] = _points[i] as IMapPoint;
-			}
-			
-			return v;
+			return _IPoints;
 		}
 	}
 }

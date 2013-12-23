@@ -33,8 +33,6 @@ package
 			
 			_appRootModule = new AppRootModule();
 			_appRootModule.init( this.stage );
-			
-			
 		}
 	}
 }
