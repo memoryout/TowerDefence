@@ -13,13 +13,17 @@ package game.view.displayList.menu.additional_window.start_game
 		private const CLASS_NAME:		String = "StartGameWindow";
 		
 		private const BTN_CLOSE_NAME:	String = "BtnClose";
+		private const BTN_TO_GAME_NAME:	String = "BtnToGame";
 		
 		private var _controller:		StartGameWindowController;
 		private var btnClose:			MovieClip;
+		private var btnToGame:			MovieClip;
 		
 		public function StartGameWindowView()
 		{
 			super();
+			
+			pageName = MenuData.START_GAME_WINDOW_VIEW;
 			
 			addLinks();
 			addListeners();
@@ -34,18 +38,27 @@ package game.view.displayList.menu.additional_window.start_game
 			
 			addChild(_viewElement);		
 			
-			btnClose = _viewElement.getChildByName(BTN_CLOSE_NAME) as MovieClip;
+			btnClose  = _viewElement.getChildByName(BTN_CLOSE_NAME) as MovieClip;
+			btnToGame = _viewElement.getChildByName(BTN_TO_GAME_NAME) as MovieClip;
 		}
 		
 		private function addListeners():void
 		{
-			btnClose.addEventListener(MouseEvent.CLICK, mClick);
-			btnClose.buttonMode = true;
+			btnClose.addEventListener(MouseEvent.CLICK,  mClickClose);
+			btnToGame.addEventListener(MouseEvent.CLICK, mClickToGame);
+			
+			btnClose.buttonMode  = true;
+			btnToGame.buttonMode = true;
 		}
 		
-		private function mClick(e:MouseEvent):void
+		private function mClickClose(e:MouseEvent):void
 		{
 			_controller.showNextWindow(MenuData.MAP_WINDOW_VIEW);
+		}
+		
+		private function mClickToGame(e:MouseEvent):void
+		{
+			_controller.goToGame();
 		}
 	}
 }

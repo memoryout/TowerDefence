@@ -5,6 +5,7 @@ package game.view.displayList.menu.main
 	import flash.events.MouseEvent;
 	import flash.system.ApplicationDomain;
 	
+	import game.view.displayList.menu.MenuData;
 	import game.view.displayList.menu.PrimaryWindow;
 	
 	public class MainWindowView extends PrimaryWindow
@@ -20,6 +21,8 @@ package game.view.displayList.menu.main
 		public function MainWindowView()
 		{
 			super();
+			
+			pageName = MenuData.MAIN_WINDOW_VIEW;
 			
 			addLinks();
 			addListeners();

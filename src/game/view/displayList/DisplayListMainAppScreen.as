@@ -3,6 +3,7 @@ package game.view.displayList
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	
+	import game.view.displayList.game.GameWindowController;
 	import game.view.displayList.menu.MenuWindowController;
 	import game.view.displayList.menu.MenuWindowView;
 	import game.view.displayList.preloader.DefaultPreloader;
@@ -13,6 +14,7 @@ package game.view.displayList
 		private var _defaultPreloader:			DefaultPreloader;
 		
 		private var _menuWindowController:		MenuWindowController;
+		private var _gameWindowController:		GameWindowController;
 		
 		private var _contentContainer:			Sprite;
 		
@@ -55,7 +57,8 @@ package game.view.displayList
 		
 		public function addMenu():void
 		{			
-			_menuWindowController = new MenuWindowController(_contentContainer);			
+			_menuWindowController = new MenuWindowController(_contentContainer);	
+			_gameWindowController = new GameWindowController(_contentContainer);	
 		}	
 		
 		private function fitContentToScreen():void

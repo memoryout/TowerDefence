@@ -21,6 +21,8 @@ package game.view.displayList.menu.info
 		{
 			super();
 			
+			pageName = MenuData.INFO_WINDOW_VIEW;
+			
 			addLinks();
 			addListeners();
 			

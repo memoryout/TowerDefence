@@ -53,11 +53,11 @@ package game.view.displayList.menu
 		
 		public function closeWindow(windowName:String):void
 		{
-			if(_currentWindow && _currentWindow.pageName == windowName) 
-			{
+//			if(_currentWindow && _currentWindow.pageName == windowName) 
+//			{
 				_currentWindow.close();
 				_currentWindow = null;
-			}
+//			}
 		}
 	}
 }

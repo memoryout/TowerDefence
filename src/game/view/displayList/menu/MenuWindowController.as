@@ -26,6 +26,7 @@ package game.view.displayList.menu
 		private function initListener():void
 		{
 			addMessageListener(MenuEvents.SHOW_WINDOW);
+			addMessageListener(MenuEvents.HIDE_WINDOW);
 		}
 		
 		private function showWindow(windowName:String):void
@@ -45,6 +46,11 @@ package game.view.displayList.menu
 				case MenuEvents.SHOW_WINDOW:
 				{
 					showWindow(message.data);
+					break;
+				}
+				case MenuEvents.HIDE_WINDOW:
+				{
+					hideWindow(message.data);
 					break;
 				}
 			}

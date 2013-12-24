@@ -21,6 +21,8 @@ package game.view.displayList.menu.upgrades
 		{
 			super();
 			
+			pageName = MenuData.UPGRADES_WINDOW_VIEW;
+			
 			addLinks();
 			addListeners();
 			

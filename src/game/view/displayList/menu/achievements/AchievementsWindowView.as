@@ -22,6 +22,8 @@ package game.view.displayList.menu.achievements
 		{
 			super();
 			
+			pageName = MenuData.ACHIEVEMENTS_WINDOW_VIEW;
+			
 			addLinks();
 			addListeners();
 			

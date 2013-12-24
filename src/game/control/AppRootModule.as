@@ -9,6 +9,7 @@ package game.control
 	import game.control.boot.AppBootTask;
 	import game.control.boot.StartupModules;
 	import game.control.game.MainGameController;
+	import game.control.view.GameLogic;
 	import game.control.view.MainViewController;
 	import game.control.view.MenuLogic;
 	import game.interfaces.IGlobalMapData;
@@ -27,6 +28,7 @@ package game.control
 		private var _mainViewController:	MainViewController;
 		
 		private var _menuLogic:				MenuLogic;
+		private var _gameLogic:				GameLogic;
 		
 		private var _mainGameController:	MainGameController;
 		
@@ -54,6 +56,7 @@ package game.control
 			_viewModule 		= new ViewRootModule();
 			_mainViewController = new MainViewController();
 			_menuLogic 			= new MenuLogic();
+			_gameLogic   		= new GameLogic();
 			
 			_mainGameController = new MainGameController();
 		}

@@ -33,6 +33,8 @@ package game.view.displayList.menu.map
 		{
 			super();
 			
+			pageName = MenuData.MAP_WINDOW_VIEW;
+			
 			addLinks();
 			addListeners();
 			
