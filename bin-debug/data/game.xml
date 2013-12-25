@@ -15,7 +15,7 @@
 	</world>
 	
 	<games>
-		<game id="0" image="DarkWorld">
+		<game id="0" balance = "1000" image="DarkWorld">
 			<map>
 				<row>1,1,1,1,1,1,1,2,1,1</row>
 				<row>1,1,1,1,1,1,1,2,1,1</row>
@@ -29,18 +29,97 @@
 				<row>1,1,2,1,1,1,1,1,1,1</row>
 			</map>
 			<waves>
-				<wave quantity="10" time="0.2" startTime="0">
+				<wave id="" quantity="10" time="0.2" startTime="0">				
 					<mob id="0"></mob>
 				</wave>
-				<wave quantity="20" time="0.5" startTime="5">
+				<wave id="" quantity="20" time="0.5" startTime="5">
 					<mob id="0"></mob>
 				</wave>
-			</waves>
+			</waves>			
+			<towers>
+				<towers>
+					<tower id="0">
+					<tower id="1">
+					<tower id="2">
+					<tower id="3">
+				</towers>				
 		</game>
 	</games>
-	
+	<towers>
+		<tower id="0" cost="50" 	 damage="12" 	speed="0.31" range="500" aoe="150/300" skill="" lock="">
+			<skin>default</skin>
+			<title>default title</title>
+			<description>description</description>
+		</tower>
+		<tower id="1" cost="175" 	 damage="60" 	speed="0.31" range="500" aoe="150/300" skill="" lock="">
+			<skin>default</skin>
+			<title>default title</title>
+			<description>description</description>
+		</tower>
+		<tower id="2" cost="625" 	 damage="300" 	speed="0.31" range="500" aoe="150/300" skill="" lock="">
+			<skin>default</skin>
+			<title>default title</title>
+			<description>description</description>
+		</tower>
+		<tower id="3" cost="2125"  damage="1500"  speed="0.31" range="500" aoe="150/300" skill="" lock="">
+			<skin>default</skin>
+			<title>default title</title>
+			<description>description</description>
+		</tower>
+		<tower id="3" cost="11225" damage="22500" speed="0.31" range="500" aoe="150/300" skill="" lock="">
+			<skin>default</skin>
+			<title>default title</title>
+			<description>description</description>
+		</tower>
+	</towers>	
 	<mobs>
-		<mob id="0" pps="5" dmg="1" type="ground" health="50" skin="default">
+		<mob id="0" level="1" hp="75" armor="Composite"    	ability="" bounty="1">
+			<skin>default</skin>
+			<title>default mob title</title>
+			<description>mob description</description>
+		</mob>
+		<mob id="1" level="2"  hp="88"  armor="Composite"  	ability="" bounty="1">
+			<skin>default</skin>
+			<title>default mob title</title>
+			<description>mob description</description>
+		</mob>
+		<mob id="2" level="3"  hp="103" armor="Composite"  	ability="" bounty="1">
+			<skin></skin>
+			<title>default mob title</title>
+			<description>mob description</description>
+		</mob>
+		<mob id="3" level="4"  hp="120" armor="Composite"  	ability="" bounty="1">
+			<skin></skin>
+			<title>default mob title</title>
+			<description>mob description</description>
+		</mob>
+		<mob id="4" level="5"  hp="141" armor="Composite"  	ability="" bounty="2">
+			<skin>default</skin>
+			<title>default mob title</title>
+			<description>mob description</description>
+		</mob>
+		<mob id="5" level="6"  hp="164" armor="Earth"  		ability="" bounty="2">
+			<skin>default</skin>
+			<title>default mob title</title>
+			<description>mob description</description>
+		</mob>
+		<mob id="6" level="7"  hp="192" armor="Water"  		ability="" bounty="2">
+			<skin></skin>
+			<title>default mob title</title>
+			<description>mob description</description>
+		</mob>
+		<mob id="7" level="8"  hp="225" armor="Fire" 	   	ability="" bounty="2">
+			<skin>default</skin>
+			<title>default mob title</title>
+			<description>mob description</description>
+		</mob>		
+		<mob id="8" level="9"  hp="263" armor="Nature" 	  	ability="Unded" bounty="2">
+			<skin>default</skin>
+			<title>default mob title</title>
+			<description>mob description</description>
+		</mob>
+		<mob id="9" level="10"  hp="308" armor="Light" 	   	ability="Fast" bounty="3">
+			<skin>default</skin>
 			<title>default mob title</title>
 			<description>mob description</description>
 		</mob>
