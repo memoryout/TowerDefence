@@ -37,32 +37,31 @@
 				</wave>
 			</waves>			
 			<towers>
-				<towers>
-					<tower id="0">
-					<tower id="1">
-					<tower id="2">
-					<tower id="3">
-				</towers>				
+				<tower id="0"/>
+				<tower id="1"/>
+				<tower id="2"/>
+				<tower id="3"/>
+			</towers>				
 		</game>
 	</games>
 	<towers>
 		<tower id="0" cost="50" 	 damage="12" 	speed="0.31" range="500" aoe="150/300" skill="" lock="">
-			<skin>default</skin>
+			<skin>Tower_0</skin>
 			<title>default title</title>
 			<description>description</description>
 		</tower>
 		<tower id="1" cost="175" 	 damage="60" 	speed="0.31" range="500" aoe="150/300" skill="" lock="">
-			<skin>default</skin>
+			<skin>Tower_1</skin>
 			<title>default title</title>
 			<description>description</description>
 		</tower>
 		<tower id="2" cost="625" 	 damage="300" 	speed="0.31" range="500" aoe="150/300" skill="" lock="">
-			<skin>default</skin>
+			<skin>Tower_2</skin>
 			<title>default title</title>
 			<description>description</description>
 		</tower>
 		<tower id="3" cost="2125"  damage="1500"  speed="0.31" range="500" aoe="150/300" skill="" lock="">
-			<skin>default</skin>
+			<skin>Tower_3</skin>
 			<title>default title</title>
 			<description>description</description>
 		</tower>

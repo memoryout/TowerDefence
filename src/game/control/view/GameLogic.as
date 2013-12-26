@@ -3,6 +3,7 @@ package game.control.view
 	import broadcast.BroadcastModule;
 	import broadcast.message.MessageData;
 	
+	import game.GameCommands;
 	import game.view.events.GameEvents;
 	import game.view.events.MenuEvents;
 	
@@ -19,13 +20,19 @@ package game.control.view
 			this.addMessageListener( MenuEvents.SHOW_GAME_WINDOW );
 		}
 		
+		private function getGlobalDataAndShowGameWindow():void
+		{
+			var message:MessageData = this.sendMessage(GameCommands.GET_GLOBAL_MAP_DATA);
+			this.sendMessage(GameEvents.START_GAME, message.data);
+		}
+		
 		override public function receiveMessage(message:MessageData):void 
 		{			
 			switch(message.message)
 			{	
 				case MenuEvents.SHOW_GAME_WINDOW:
 				{
-					this.sendMessage(GameEvents.START_GAME, null);
+					getGlobalDataAndShowGameWindow();
 					break;
 				}
 			}

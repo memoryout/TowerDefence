@@ -28,13 +28,20 @@ package game.view.displayList.game
 			this.addMessageListener( GameEvents.START_GAME );
 		}
 		
+		private function initMainElements(obj:Object):void
+		{
+			_mainWindowView.addContainerToview();
+			
+			trace(obj);
+		}
+		
 		override public function receiveMessage(message:MessageData):void 
 		{			
 			switch(message.message)
 			{	
 				case GameEvents.START_GAME:
 				{
-					_mainWindowView.addContainerToview();
+					initMainElements(message.data);
 					break;
 				}
 			}
