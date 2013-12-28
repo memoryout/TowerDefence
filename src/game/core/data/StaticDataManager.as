@@ -7,6 +7,9 @@ package game.core.data
 	{
 		private const _maps:			Vector.<StaticMapData> = new Vector.<StaticMapData>;
 		
+		private const _towers:			Vector.<StaticTowerData> = new Vector.<StaticTowerData>;
+		private const _mobs:			Vector.<StaticMobData> = new Vector.<StaticMobData>;
+		
 		
 		public function StaticDataManager()
 		{
@@ -100,6 +103,56 @@ package game.core.data
 					}
 					
 					_maps.push( mapData );
+				}
+			}
+			
+			var towers:XMLList = xml.towers;
+			var towerData:StaticTowerData;
+			
+			for(par in towers.*)
+			{
+				if( towers.*[par].name() == "tower" )
+				{
+					towerData = new StaticTowerData();
+					towerData.id = uint( towers.*[par].@id );
+					towerData.damage = Number( towers.*[par].@damage );
+					towerData.speed = Number( towers.*[par].@speed );
+					towerData.range = Number( towers.*[par].@range );
+					towerData.aoe = String( towers.*[par].@aoe );
+					towerData.level = uint( towers.*[par].@level );
+					towerData.type = String( towers.*[par].@type );
+					
+					towerData.skin = String( towers.*[par].skin );
+					towerData.title = String( towers.*[par].title );
+					towerData.description = String( towers.*[par].description );
+					
+					_towers.push( towerData );
+				}
+			}
+			
+			var mobs:XMLList = xml.mobs;
+			var mobData:StaticMobData;
+			
+			for(par in mobs.*)
+			{
+				if( mobs.*[par].name() == "mob" )
+				{
+					mobData = new StaticMobData();
+					
+					mobData.id = uint( mobs.*[par].@id );
+					mobData.level = int( mobs.*[par].@level );
+					mobData.hp = int( mobs.*[par].@hp );
+					mobData.armor = String( mobs.*[par].@armor );
+					mobData.vulnerability = String( mobs.*[par].@vulnerability );
+					mobData.ability = String( mobs.*[par].@ability );
+					mobData.bounty = Number( mobs.*[par].@bounty );
+					
+					mobData.skin = String( mobs.*[par].skin );
+					mobData.title = String( mobs.*[par].title );
+					mobData.description = String( mobs.*[par].description );
+					
+					
+					_mobs.push( mobData );
 				}
 			}
 		}

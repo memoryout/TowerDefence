@@ -45,79 +45,79 @@
 		</game>
 	</games>
 	<towers>
-		<tower id="0" cost="50" 	 damage="12" 	speed="0.31" range="500" aoe="150/300" skill="" lock="">
+		<tower id="0" cost="50" 	 damage="12" 	speed="0.31" range="500" aoe="150/300" skill="" level="0" type="">
 			<skin>Tower_0</skin>
 			<title>default title</title>
 			<description>description</description>
 		</tower>
-		<tower id="1" cost="175" 	 damage="60" 	speed="0.31" range="500" aoe="150/300" skill="" lock="">
+		<tower id="1" cost="175" 	 damage="60" 	speed="0.31" range="500" aoe="150/300" skill="" level="0" type="">
 			<skin>Tower_1</skin>
 			<title>default title</title>
 			<description>description</description>
 		</tower>
-		<tower id="2" cost="625" 	 damage="300" 	speed="0.31" range="500" aoe="150/300" skill="" lock="">
+		<tower id="2" cost="625" 	 damage="300" 	speed="0.31" range="500" aoe="150/300" skill="" level="0" type="">
 			<skin>Tower_2</skin>
 			<title>default title</title>
 			<description>description</description>
 		</tower>
-		<tower id="3" cost="2125"  damage="1500"  speed="0.31" range="500" aoe="150/300" skill="" lock="">
+		<tower id="3" cost="2125"  damage="1500"  speed="0.31" range="500" aoe="150/300" skill="" level="0" type="">
 			<skin>Tower_3</skin>
 			<title>default title</title>
 			<description>description</description>
 		</tower>
-		<tower id="3" cost="11225" damage="22500" speed="0.31" range="500" aoe="150/300" skill="" lock="">
+		<tower id="3" cost="11225" damage="22500" speed="0.31" range="500" aoe="150/300" skill="" level="0" type="">
 			<skin>default</skin>
 			<title>default title</title>
 			<description>description</description>
 		</tower>
 	</towers>	
 	<mobs>
-		<mob id="0" level="1" hp="75" armor="Composite"    	ability="" bounty="1">
+		<mob id="0" level="1" hp="75" armor="Composite"  vulnerability=""  	ability="" bounty="1">
 			<skin>default</skin>
 			<title>default mob title</title>
 			<description>mob description</description>
 		</mob>
-		<mob id="1" level="2"  hp="88"  armor="Composite"  	ability="" bounty="1">
+		<mob id="1" level="2"  hp="88"  armor="Composite" vulnerability="" 	ability="" bounty="1">
 			<skin>default</skin>
 			<title>default mob title</title>
 			<description>mob description</description>
 		</mob>
-		<mob id="2" level="3"  hp="103" armor="Composite"  	ability="" bounty="1">
+		<mob id="2" level="3"  hp="103" armor="Composite" vulnerability="" 	ability="" bounty="1">
 			<skin></skin>
 			<title>default mob title</title>
 			<description>mob description</description>
 		</mob>
-		<mob id="3" level="4"  hp="120" armor="Composite"  	ability="" bounty="1">
+		<mob id="3" level="4"  hp="120" armor="Composite" vulnerability="" 	ability="" bounty="1">
 			<skin></skin>
 			<title>default mob title</title>
 			<description>mob description</description>
 		</mob>
-		<mob id="4" level="5"  hp="141" armor="Composite"  	ability="" bounty="2">
+		<mob id="4" level="5"  hp="141" armor="Composite" vulnerability="" 	ability="" bounty="2">
 			<skin>default</skin>
 			<title>default mob title</title>
 			<description>mob description</description>
 		</mob>
-		<mob id="5" level="6"  hp="164" armor="Earth"  		ability="" bounty="2">
+		<mob id="5" level="6"  hp="164" armor="Earth"  vulnerability=""		ability="" bounty="2">
 			<skin>default</skin>
 			<title>default mob title</title>
 			<description>mob description</description>
 		</mob>
-		<mob id="6" level="7"  hp="192" armor="Water"  		ability="" bounty="2">
+		<mob id="6" level="7"  hp="192" armor="Water"  vulnerability=""		ability="" bounty="2">
 			<skin></skin>
 			<title>default mob title</title>
 			<description>mob description</description>
 		</mob>
-		<mob id="7" level="8"  hp="225" armor="Fire" 	   	ability="" bounty="2">
+		<mob id="7" level="8"  hp="225" armor="Fire" vulnerability=""	   	ability="" bounty="2">
 			<skin>default</skin>
 			<title>default mob title</title>
 			<description>mob description</description>
 		</mob>		
-		<mob id="8" level="9"  hp="263" armor="Nature" 	  	ability="Unded" bounty="2">
+		<mob id="8" level="9"  hp="263" armor="Nature" 	vulnerability=""  	ability="Unded" bounty="2">
 			<skin>default</skin>
 			<title>default mob title</title>
 			<description>mob description</description>
 		</mob>
-		<mob id="9" level="10"  hp="308" armor="Light" 	   	ability="Fast" bounty="3">
+		<mob id="9" level="10"  hp="308" armor="Light" 	vulnerability=""   	ability="Fast" bounty="3">
 			<skin>default</skin>
 			<title>default mob title</title>
 			<description>mob description</description>
