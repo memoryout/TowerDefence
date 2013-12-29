@@ -6,5 +6,7 @@ package game.interfaces
 		function get quantity():int;
 		function get time():Number;
 		function get startTime():Number;
+		
+		function get mobData():IWaveMobData;
 	}
 }

@@ -33,7 +33,7 @@
 					<mob id="0"></mob>
 				</wave>
 				<wave id="" quantity="20" time="0.5" startTime="5">
-					<mob id="0"></mob>
+					<mob id="1"></mob>
 				</wave>
 			</waves>			
 			<towers>

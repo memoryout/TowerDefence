@@ -3,6 +3,7 @@ package game.core.session
 	import game.core.data.StaticMapData;
 	import game.interfaces.IMobData;
 	import game.interfaces.ITowerData;
+	import game.core.session.game.GameData;
 
 	public class GameSession
 	{

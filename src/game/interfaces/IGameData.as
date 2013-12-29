@@ -4,6 +4,7 @@ package game.interfaces
 	{
 		function get id():uint;
 		function get balance():int;
+		function get image():String;
 		
 		function get waves():Vector.<IWaveData>;
 		function get towers():Vector.<int>;

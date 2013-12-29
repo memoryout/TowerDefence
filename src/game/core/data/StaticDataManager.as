@@ -9,7 +9,7 @@ package game.core.data
 		
 		private const _towers:			Vector.<StaticTowerData> = new Vector.<StaticTowerData>;
 		private const _mobs:			Vector.<StaticMobData> = new Vector.<StaticMobData>;
-		
+		private const _games:			Vector.<StaticGameData> = new Vector.<StaticGameData>;
 		
 		public function StaticDataManager()
 		{
@@ -25,6 +25,7 @@ package game.core.data
 			this.addMessageListener( StaticDataManagerCommands.GET_ALL_MAPS_DATA );
 			this.addMessageListener( StaticDataManagerCommands.GET_MOBS_DATA );
 			this.addMessageListener( StaticDataManagerCommands.GET_TOWERS_DATA );
+			this.addMessageListener( StaticDataManagerCommands.GET_GAMES_DATA );
 		}
 		
 		
@@ -53,6 +54,12 @@ package game.core.data
 				case StaticDataManagerCommands.GET_TOWERS_DATA:
 				{
 					message.data = _towers;
+					break;
+				}
+					
+				case StaticDataManagerCommands.GET_GAMES_DATA:
+				{
+					message.data = _games;
 					break;
 				}
 			}
@@ -167,6 +174,53 @@ package game.core.data
 					
 					
 					_mobs.push( mobData );
+				}
+			}
+			
+			var games:XMLList = xml.games;
+			var waves:XMLList;
+			var towersList:XMLList;
+			var mobsList:XMLList;
+			var gameData:StaticGameData, waveData:StaticWaveData;
+			var waveModeData:StaticWaveMobData;
+			
+			for(par in games.*)
+			{
+				if( games.*[par].name() == "game" )
+				{
+					gameData = new StaticGameData();
+					gameData.id = uint( games.*[par].@id );
+					gameData.balance = Number( games.*[par].@balance );
+					gameData.image = String( games.*[par].@image );
+					
+					waves =  games.*[par].waves;
+					
+					for(par2 in waves.*)
+					{
+						waveData = new StaticWaveData();
+						waveData.id = uint( waves.*[par].@id );
+						waveData.quantity = uint( waves.*[par].@quantity );
+						waveData.time = uint( waves.*[par].@time );
+						waveData.startTime = uint( waves.*[par].@startTime );
+						
+						mobsList = waves.*[par].mob;
+						
+						waveModeData = new StaticWaveMobData();
+						waveModeData.id = mobsList.@id;
+						
+						waveData.mob = waveModeData;
+						
+						gameData.waves.push( waveData );	
+					}
+					
+					towersList = games.*[par].towers;
+					
+					for(par2 in towersList.*)
+					{
+						gameData.towers.push( towersList.*[par2].@id );
+					}
+					
+					_games.push( gameData );
 				}
 			}
 		}
