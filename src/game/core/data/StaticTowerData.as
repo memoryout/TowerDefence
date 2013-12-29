@@ -10,6 +10,7 @@ package game.core.data
 		public var level:			uint;
 		public var type:			String;
 		public var cost:			Number;
+		public var skill:			String;
 		
 		public var skin:			String;
 		public var title:			String;

@@ -11,6 +11,10 @@ package game.core.session
 		
 		private const _globalMapData:		WorldGlobalData = new WorldGlobalData();
 		
+		private const _mobsData:			MobsData 	= new MobsData();
+		private const _towersData:			TowersData  = new TowersData();
+		private const _gameData:			GameData    = new GameData();
+		
 		public function GameSession()
 		{
 			
@@ -38,5 +42,19 @@ package game.core.session
 			return _userInfo;
 		}
 		
+		public function get mobsData():MobsData
+		{
+			return _mobsData;
+		}
+		
+		public function get towersData():TowersData
+		{
+			return _towersData;
+		}
+		
+		public function get gameData():GameData
+		{
+			return _gameData;
+		}		
 	}
 }
