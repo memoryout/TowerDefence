@@ -3,11 +3,11 @@ package game.core.session
 	import game.core.data.StaticTowerData;
 	import game.interfaces.ITowerData;
 
-	public class TowersData implements ITowerData
+	public class TowerData implements ITowerData
 	{
 		private var _towersData:	StaticTowerData;
 		
-		public function TowersData()
+		public function TowerData()
 		{
 		}
 		

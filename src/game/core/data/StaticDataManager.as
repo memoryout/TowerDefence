@@ -23,6 +23,8 @@ package game.core.data
 		{
 			this.addMessageListener( StaticDataManagerCommands.PARSE_STATIC_DATA );
 			this.addMessageListener( StaticDataManagerCommands.GET_ALL_MAPS_DATA );
+			this.addMessageListener( StaticDataManagerCommands.GET_MOBS_DATA );
+			this.addMessageListener( StaticDataManagerCommands.GET_TOWERS_DATA );
 		}
 		
 		
@@ -39,6 +41,18 @@ package game.core.data
 				case StaticDataManagerCommands.GET_ALL_MAPS_DATA:
 				{
 					message.data = _maps;
+					break;
+				}
+					
+				case StaticDataManagerCommands.GET_MOBS_DATA:
+				{
+					message.data = _mobs;
+					break;
+				}
+					
+				case StaticDataManagerCommands.GET_TOWERS_DATA:
+				{
+					message.data = _towers;
 					break;
 				}
 			}

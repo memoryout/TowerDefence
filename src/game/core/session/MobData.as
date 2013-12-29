@@ -4,11 +4,11 @@ package game.core.session
 	import game.core.data.StaticMobData;
 	import game.interfaces.IMobData;
 
-	public class MobsData implements IMobData
+	public class MobData implements IMobData
 	{
 		private var _mobsData:			StaticMobData;
 		
-		public function MobsData()
+		public function MobData()
 		{
 		}
 		

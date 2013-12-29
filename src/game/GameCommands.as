@@ -8,5 +8,8 @@ package game
 		
 		public static const GET_GLOBAL_MAP_DATA:	uint = UintCounter.getId();
 		public static const GET_MAP_DATA:			uint = UintCounter.getId();
+		
+		public static const GET_TOWERS_DATA:		uint = UintCounter.getId();
+		public static const GET_MOBS_DATA:			uint = UintCounter.getId();
 	}
 }

@@ -1,6 +1,8 @@
 package game.core.session
 {
 	import game.core.data.StaticMapData;
+	import game.interfaces.IMobData;
+	import game.interfaces.ITowerData;
 
 	public class GameSession
 	{
@@ -11,8 +13,8 @@ package game.core.session
 		
 		private const _globalMapData:		WorldGlobalData = new WorldGlobalData();
 		
-		private const _mobsData:			MobsData 	= new MobsData();
-		private const _towersData:			TowersData  = new TowersData();
+		private const _mobsData:			Vector.<IMobData> = new Vector.<IMobData>;
+		private const _towersData:			Vector.<ITowerData> = new Vector.<ITowerData>;
 		private const _gameData:			GameData    = new GameData();
 		
 		public function GameSession()
@@ -42,12 +44,12 @@ package game.core.session
 			return _userInfo;
 		}
 		
-		public function get mobsData():MobsData
+		public function get mobsData():Vector.<IMobData>
 		{
 			return _mobsData;
 		}
 		
-		public function get towersData():TowersData
+		public function get towersData():Vector.<ITowerData>
 		{
 			return _towersData;
 		}
