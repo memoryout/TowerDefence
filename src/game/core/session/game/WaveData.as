@@ -2,13 +2,10 @@ package game.core.session.game
 {
 	import game.core.data.StaticWaveData;
 	import game.interfaces.IWaveData;
-	import game.interfaces.IWaveMobData;
 	
 	public class WaveData implements IWaveData
 	{
 		private var _waveData:			StaticWaveData;
-		
-		private var mobData:			WaveMobData;
 		
 		public function WaveData()
 		{
@@ -17,11 +14,7 @@ package game.core.session.game
 		
 		public function setStaticData(data:StaticWaveData):void
 		{
-			_waveData = data;
-			
-			if(mobData) mobData.clear();
-			
-			mobData.setStaticData( _waveData.mob );
+			_waveData = data;			
 		}
 		
 		public function get id():uint
@@ -44,9 +37,9 @@ package game.core.session.game
 			return _waveData.startTime;
 		}
 		
-		public function get mobData():IWaveMobData
+		public function get mobs():Vector.<int>
 		{
-			return mobData;
+			return _waveData.mob;
 		}
 	}
 }

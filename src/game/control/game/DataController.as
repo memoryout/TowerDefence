@@ -5,6 +5,7 @@ package game.control.game
 	
 	import game.GameCommands;
 	import game.core.data.StaticDataManagerCommands;
+	import game.core.data.StaticGameData;
 	import game.core.data.StaticMapData;
 	import game.core.data.StaticMobData;
 	import game.core.data.StaticTowerData;
@@ -13,6 +14,8 @@ package game.control.game
 	import game.core.session.MobData;
 	import game.core.session.TowerData;
 	import game.core.session.WorldGlobalData;
+	import game.core.session.game.GameData;
+	import game.interfaces.IGameData;
 	import game.interfaces.IGlobalMapData;
 	import game.interfaces.IMobData;
 	import game.interfaces.ITowerData;
@@ -27,15 +30,12 @@ package game.control.game
 			super();
 			
 			initListener();
-		}
-		
+		}		
 		
 		public function initDefaultUser():void
 		{
 			
-		}
-		
-		
+		}		
 		
 		public function initSessionData():void
 		{
@@ -45,10 +45,10 @@ package game.control.game
 			var messageData:MessageData;
 			var globalMapData:WorldGlobalData;
 			
-			messageData = this.sendMessage( StaticDataManagerCommands.GET_ALL_MAPS_DATA );
-			staticMapData = messageData.data;
+			messageData 	= this.sendMessage( StaticDataManagerCommands.GET_ALL_MAPS_DATA );
+			staticMapData 	= messageData.data;
 			
-			globalMapData = _session.worldData;
+			globalMapData	= _session.worldData;
 			
 			var i:int, sessionMapData:GameMapData;
 			for(i = 0; i < staticMapData.length; i++)
@@ -57,15 +57,12 @@ package game.control.game
 				sessionMapData.setStaticData( staticMapData[i] );
 				globalMapData.addMap( sessionMapData );
 			}
-			
-			
-			
-			
+					
 			var staticTowersData:Vector.<StaticTowerData>;
 			var towerData:TowerData;
 			var sessionTowerData:Vector.<ITowerData>;
 			
-			messageData = this.sendMessage( StaticDataManagerCommands.GET_TOWERS_DATA );
+			messageData 	 = this.sendMessage( StaticDataManagerCommands.GET_TOWERS_DATA );
 			staticTowersData = messageData.data;
 			sessionTowerData = _session.towersData;
 			
@@ -75,16 +72,14 @@ package game.control.game
 				towerData.setStaticData( staticTowersData[i] );
 				
 				sessionTowerData.push( towerData );
-			}
-			
-			
+			}			
 			
 			var staticMobsData:Vector.<StaticMobData>;
 			var mobData:MobData;
 			var sessionMobsData:Vector.<IMobData>;
 			
-			messageData = this.sendMessage( StaticDataManagerCommands.GET_MOBS_DATA );
-			staticMobsData = messageData.data;
+			messageData 	= this.sendMessage( StaticDataManagerCommands.GET_MOBS_DATA );
+			staticMobsData 	= messageData.data;
 			sessionMobsData = _session.mobsData;
 			
 			for(i = 0; i < staticMobsData.length; i++)
@@ -92,6 +87,21 @@ package game.control.game
 				mobData = new MobData();
 				mobData.setStaticData( staticMobsData[i] );
 				sessionMobsData.push( mobData );
+			}
+						
+			var staticGameData:Vector.<StaticGameData>;
+			var gameData:GameData;
+			var sessionGameData:Vector.<IGameData>;
+			
+			messageData 	= this.sendMessage( StaticDataManagerCommands.GET_GAMES_DATA );
+			staticGameData 	= messageData.data;
+			sessionGameData = _session.gamesData;
+		
+			for(i = 0; i < staticGameData.length; i++)
+			{
+				gameData = new GameData();
+				gameData.setStaticData( staticGameData[i] );
+				sessionGameData.push( gameData );
 			}
 		}
 		
@@ -103,6 +113,7 @@ package game.control.game
 			this.addMessageListener( GameCommands.GET_USER_INFO );
 			this.addMessageListener( GameCommands.GET_MOBS_DATA );
 			this.addMessageListener( GameCommands.GET_TOWERS_DATA );
+			this.addMessageListener( GameCommands.GET_GAME_DATA );
 		}
 		
 		override public function receiveMessage(message:MessageData):void
@@ -130,6 +141,12 @@ package game.control.game
 				case GameCommands.GET_TOWERS_DATA:
 				{
 					message.data = _session.towersData;
+					break;
+				}
+					
+				case GameCommands.GET_GAME_DATA:
+				{
+					message.data = _session.gamesData;
 					break;
 				}
 			}

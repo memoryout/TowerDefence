@@ -2,7 +2,7 @@ package game.core.data
 {
 	public class StaticWaveData
 	{
-		public var mob:					StaticWaveMobData;
+		public var mob:					Vector.<int>;
 		
 		public var id:					uint;
 		public var quantity:			uint;

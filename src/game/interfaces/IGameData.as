@@ -7,6 +7,6 @@ package game.interfaces
 		function get image():String;
 		
 		function get waves():Vector.<IWaveData>;
-		function get towers():Vector.<int>;
+		function get towers():Vector.<uint>;
 	}
 }

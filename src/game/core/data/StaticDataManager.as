@@ -182,7 +182,7 @@ package game.core.data
 			var towersList:XMLList;
 			var mobsList:XMLList;
 			var gameData:StaticGameData, waveData:StaticWaveData;
-			var waveModeData:StaticWaveMobData;
+			var waveModeData:Vector.<int>;
 			
 			for(par in games.*)
 			{
@@ -205,8 +205,8 @@ package game.core.data
 						
 						mobsList = waves.*[par].mob;
 						
-						waveModeData = new StaticWaveMobData();
-						waveModeData.id = mobsList.@id;
+						waveModeData = new Vector.<int>;
+						waveModeData.push(mobsList.@id);
 						
 						waveData.mob = waveModeData;
 						

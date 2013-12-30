@@ -18,11 +18,12 @@ package game.control.view
 		private function initMessages():void
 		{
 			this.addMessageListener( MenuEvents.SHOW_GAME_WINDOW );
+			this.addMessageListener( GameCommands.GET_GAME_DATA );
 		}
 		
 		private function getGlobalDataAndShowGameWindow():void
 		{
-			var message:MessageData = this.sendMessage(GameCommands.GET_GLOBAL_MAP_DATA);
+			var message:MessageData = this.sendMessage(GameCommands.GET_GAME_DATA);
 			this.sendMessage(GameEvents.START_GAME, message.data);
 		}
 		
