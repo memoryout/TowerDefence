@@ -4,7 +4,7 @@
 			<title>Light</title>
 			<desciption>Light</desciption>
 			<points>
-				<point x="90" y="350" id="1" title="point 1" map="1" stars = "0"></point>
+				<point x="90" y="350" id="1" title="point 1" map="Map_0" stars = "0"></point>
 			</points>
 		</map>		
 		<map id="1" image="DarkWorld">
@@ -15,7 +15,7 @@
 	</world>
 	
 	<games>
-		<game id="0" balance = "1000" image="DarkWorld">
+		<game id="0" balance = "1000" life="30" wave="20" image="LightWorld">
 			<map>
 				<row>1,1,1,1,1,1,1,2,1,1</row>
 				<row>1,1,1,1,1,1,1,2,1,1</row>

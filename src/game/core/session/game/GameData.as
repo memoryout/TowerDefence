@@ -56,5 +56,15 @@ package game.core.session.game
 		{
 			return _gameData.towers;
 		}
+		
+		public function get life():uint
+		{
+			return _gameData.life;
+		}
+		
+		public function get wave():uint
+		{
+			return _gameData.wave;
+		}
 	}
 }

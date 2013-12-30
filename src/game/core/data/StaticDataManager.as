@@ -192,6 +192,8 @@ package game.core.data
 					gameData.id = uint( games.*[par].@id );
 					gameData.balance = Number( games.*[par].@balance );
 					gameData.image = String( games.*[par].@image );
+					gameData.life = uint( games.*[par].@life );
+					gameData.wave = uint( games.*[par].@wave );
 					
 					waves =  games.*[par].waves;
 					

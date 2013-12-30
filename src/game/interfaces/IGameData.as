@@ -8,5 +8,8 @@ package game.interfaces
 		
 		function get waves():Vector.<IWaveData>;
 		function get towers():Vector.<uint>;
+		
+		function get life():uint;
+		function get wave():uint;
 	}
 }

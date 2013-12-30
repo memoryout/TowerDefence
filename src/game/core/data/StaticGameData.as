@@ -10,6 +10,9 @@ package game.core.data
 		public var balance:				Number;
 		public var image:				String;
 		
+		public var life:				uint;
+		public var wave:				uint;
+		
 		public function StaticGameData()
 		{
 		}
