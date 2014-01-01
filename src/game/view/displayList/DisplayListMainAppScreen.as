@@ -65,13 +65,13 @@ package game.view.displayList
 		{
 			var screenWidht:uint, screenHeight:uint, contentWidth:Number, contentHeight:Number, scale:Number;
 			
-			screenWidht = Math.max(this.stage.fullScreenWidth, this.stage.fullScreenHeight);
-			screenHeight = Math.min(this.stage.fullScreenWidth, this.stage.fullScreenHeight);
+			screenWidht = Math.max(/*this.stage.fullScreenWidth, this.stage.fullScreenHeight*/ _sourceWidth);
+			screenHeight = Math.min(/*this.stage.fullScreenWidth, this.stage.fullScreenHeight*/ _sourceHeight);
 						
 			//contentWidth = Math.min( screenWidht, _sourceWidth );
 			contentWidth =  screenWidht;
 			
-			scale = contentWidth / _sourceWidth;
+			scale = /*contentWidth / _sourceWidth*/ 1;
 			
 			contentHeight = _sourceHeight * scale;
 			

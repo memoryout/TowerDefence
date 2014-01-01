@@ -15,7 +15,7 @@
 	</world>
 	
 	<games>
-		<game id="0" balance = "1000" life="30" wave="20" image="LightWorld">
+		<game id="0" balance = "1000" life="30" wave="20" image="Game_0">
 			<map>
 				<row>1,1,1,1,1,1,1,2,1,1</row>
 				<row>1,1,1,1,1,1,1,2,1,1</row>

@@ -22,7 +22,7 @@ package game.view.displayList.menu.map
 		
 		private var btnClose:					MovieClip;
 		
-		private var primaryPartsOfMapContainer:	MovieClip;
+		private var primaryPartsOfMapContainer:	MovieClip = new MovieClip();
 		
 		private var initX:						Number;
 		private var singleWidth:				Number;
@@ -51,7 +51,6 @@ package game.view.displayList.menu.map
 			var _viewElement:MovieClip = new _viewClass();
 			
 			addChild(_viewElement);		
-			addChildAt(primaryPartsOfMapContainer = new MovieClip(), 0);
 			
 			btnClose = _viewElement.getChildByName(BTN_CLOSE_NAME) as MovieClip;
 		}
@@ -69,8 +68,17 @@ package game.view.displayList.menu.map
 			btnClose.buttonMode 	   				= true;
 		}
 		
-		private function gotoStartGamePopUp(e:MouseEvent):void
+		private function removeListeners():void
 		{
+			primaryPartsOfMapContainer.removeEventListener(MouseEvent.MOUSE_UP, 	gotoStartGamePopUp);
+			primaryPartsOfMapContainer.removeEventListener(MouseEvent.MOUSE_DOWN, 	mDownPrimaryPartsOfMapContainer);
+			
+			primaryPartsOfMapContainer.removeEventListener(MouseEvent.MOUSE_MOVE,   moveMaps);
+			primaryPartsOfMapContainer.removeEventListener(MouseEvent.MOUSE_UP, 	moveEnd);
+		}
+		
+		private function gotoStartGamePopUp(e:MouseEvent):void
+		{		
 			var namePart:Array = e.target.name.split(" ");
 			
 			if(namePart[0] && namePart[0] == "point") _controller.showNextWindow(MenuData.START_GAME_WINDOW_VIEW);
@@ -95,10 +103,7 @@ package game.view.displayList.menu.map
 				if(primaryPartsOfMapContainer.x > 0) 
 					finalMove(0);
 				else if(primaryPartsOfMapContainer.x < (singleWidth*(primaryPartsOfMapContainer.numChildren - 1)*(-1)))
-					finalMove( singleWidth*(primaryPartsOfMapContainer.numChildren - 1)*(-1) );	
-				
-				trace(primaryPartsOfMapContainer.x);
-											
+					finalMove( singleWidth*(primaryPartsOfMapContainer.numChildren - 1)*(-1) );				
 		}		
 		
 		private function finalMove(_x:Number):void
@@ -167,6 +172,8 @@ package game.view.displayList.menu.map
 					(_pointMapElement.getChildByName("star_" + k) as MovieClip).visible = true;
 					
 			}
+			
+			addChildAt(primaryPartsOfMapContainer, 0);
 		}
 	}
 }

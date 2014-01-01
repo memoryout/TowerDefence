@@ -31,9 +31,7 @@ package game.view.displayList.game
 		private function initMainElements(obj:Object):void
 		{
 			_mainWindowView.addContainerToView();
-			_mainWindowView.initMainElements(obj);
-			
-			trace(obj);
+			_mainWindowView.initMainElements(obj);			
 		}
 		
 		override public function receiveMessage(message:MessageData):void 

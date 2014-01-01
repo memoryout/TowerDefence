@@ -51,13 +51,24 @@ package game.view.displayList.menu.additional_window.start_game
 			btnToGame.buttonMode = true;
 		}
 		
+		private function removeListeners():void
+		{
+			btnClose.removeEventListener(MouseEvent.CLICK,  mClickClose);
+			btnToGame.removeEventListener(MouseEvent.CLICK, mClickToGame);
+			
+			btnClose.buttonMode  = false;
+			btnToGame.buttonMode = false;
+		}
+		
 		private function mClickClose(e:MouseEvent):void
 		{
+			removeListeners();
 			_controller.showNextWindow(MenuData.MAP_WINDOW_VIEW);
 		}
 		
 		private function mClickToGame(e:MouseEvent):void
 		{
+			removeListeners();
 			_controller.goToGame();
 		}
 	}

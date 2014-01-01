@@ -8,7 +8,7 @@ package game.view.displayList.menu
 
 	public class PrimaryWindow extends Sprite implements IWindow
 	{
-		private const OPEN_CLOSE_TIME:Number = 0.5;
+		private const OPEN_CLOSE_TIME:Number = 0.2;
 		
 		private var open_tween:		TweenLite;
 		private var close_tween:	TweenLite;
@@ -27,11 +27,11 @@ package game.view.displayList.menu
 			open_tween = TweenLite.to(this, OPEN_CLOSE_TIME, {alpha:1});
 		}
 		
-		public function close():void
+		public function close(callBack:Function = null):void
 		{
 			if(close_tween) close_tween.kill();
 			
-			close_tween = TweenLite.to(this, OPEN_CLOSE_TIME, {alpha:0});
+			close_tween = TweenLite.to(this, OPEN_CLOSE_TIME, {alpha:0, onComplete:callBack});
 		}
 	}
 }

@@ -16,6 +16,7 @@ package game.view.displayList.menu
 		private var _currentWindow:			PrimaryWindow;
 		
 		private var _registeredWindows:		Dictionary;
+		private var _windowNameForShow:		String;
 		
 		public function MenuWindowView()
 		{
@@ -33,30 +34,40 @@ package game.view.displayList.menu
 		
 		public function openWindow(windowName:String):void
 		{
+			_windowNameForShow = windowName;
+			
 			if(_currentWindow)
 			{
 				if(_currentWindow.pageName == windowName) return;
-								
-				_currentWindow.close();
+												
+				closeWindow(_currentWindow.pageName, registerAndAddWindow);
+			}
+			else registerAndAddWindow();			
+		}
+		
+		private function registerAndAddWindow():void
+		{
+			if(_currentWindow && this.contains(_currentWindow)) 
+			{
+				this.removeChild(_currentWindow);
 				_currentWindow = null;
 			}
 			
-			if(_registeredWindows[windowName])
+			if(_registeredWindows[_windowNameForShow])
 			{
-				_currentWindow = new _registeredWindows[windowName]();
-				_currentWindow.name = windowName;
+				_currentWindow = new _registeredWindows[_windowNameForShow]();
+				_currentWindow.name = _windowNameForShow;
 				_currentWindow.open();
 				
 				this.addChild(_currentWindow);	
 			}
 		}
 		
-		public function closeWindow(windowName:String):void
+		public function closeWindow(windowName:String, callBack:Function = null):void
 		{
 //			if(_currentWindow && _currentWindow.pageName == windowName) 
 //			{
-				_currentWindow.close();
-				_currentWindow = null;
+				_currentWindow.close(callBack);				
 //			}
 		}
 	}

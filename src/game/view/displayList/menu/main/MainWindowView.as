@@ -46,8 +46,14 @@ package game.view.displayList.menu.main
 			_buttonContianer.buttonMode = true;
 		}
 		
+		private function removeListners():void
+		{
+			_buttonContianer.removeEventListener(MouseEvent.CLICK, mClick);
+		}
+		
 		private function mClick(e:MouseEvent):void
 		{
+			removeListners();
 			_controller.showNextWindow(e.target.name);
 		}
 	}

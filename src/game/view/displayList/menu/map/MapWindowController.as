@@ -7,6 +7,7 @@ package game.view.displayList.menu.map
 	import game.core.data.StaticDataManagerCommands;
 	import game.interfaces.IGlobalMapData;
 	import game.interfaces.IMapData;
+	import game.view.displayList.menu.MenuData;
 	import game.view.events.MenuEvents;
 
 	public class MapWindowController extends BroadcastModule
@@ -25,7 +26,8 @@ package game.view.displayList.menu.map
 		
 		public function showNextWindow(windowName:String):void
 		{
-			sendMessage(MenuEvents.SHOW_WINDOW, windowName);
+			sendMessage(MenuEvents.HIDE_WINDOW, MenuData.MAP_WINDOW_VIEW);
+			sendMessage(MenuEvents.SHOW_WINDOW, windowName);		
 		}
 		
 		private function initListener():void
