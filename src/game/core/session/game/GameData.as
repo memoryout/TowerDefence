@@ -12,7 +12,7 @@ package game.core.session.game
 		
 		public function GameData()
 		{
-			_waves  = new Vector.<WaveData>;
+			_waves  = new Vector.<IWaveData>;
 		}
 		
 		public function setStaticData(data:StaticGameData):void
