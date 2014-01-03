@@ -32,6 +32,8 @@ package game.view.displayList.game
 		private var _lifeTxt:					TextField;
 		private var _waveTxt:					TextField;
 		
+		private var possibkePositionOnMap:		Vector.<Vector.<int>>;
+		
 		public function GameWindowView(contentContainer:Sprite)
 		{
 			_contentContainer = contentContainer;

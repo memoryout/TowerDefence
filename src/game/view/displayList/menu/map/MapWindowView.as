@@ -79,7 +79,7 @@ package game.view.displayList.menu.map
 		
 		private function gotoStartGamePopUp(e:MouseEvent):void
 		{		
-			var namePart:Array = e.target.name.split(" ");
+			var namePart:Array = e.target.name.split("_");
 			
 			if(namePart[0] && namePart[0] == "point") _controller.showNextWindow(MenuData.START_GAME_WINDOW_VIEW);
 		}
