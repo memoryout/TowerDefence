@@ -18,12 +18,12 @@ package game.control.view
 		private function initMessages():void
 		{
 			this.addMessageListener( MenuEvents.SHOW_GAME_WINDOW );
-			this.addMessageListener( GameCommands.GET_GAME_DATA );
+			this.addMessageListener( GameCommands.GET_GAMES_DATA );
 		}
 		
 		private function getGlobalDataAndShowGameWindow():void
 		{
-			var messageGameData:MessageData   = this.sendMessage(GameCommands.GET_GAME_DATA);
+			var messageGameData:MessageData   = this.sendMessage(GameCommands.GET_GAMES_DATA);
 			var messageTowersData:MessageData = this.sendMessage(GameCommands.GET_TOWERS_DATA);
 			
 			var skinsName:Array = new Array(), i:int;

@@ -114,6 +114,7 @@ package game.control.game
 			this.addMessageListener( GameCommands.GET_MOBS_DATA );
 			this.addMessageListener( GameCommands.GET_TOWERS_DATA );
 			this.addMessageListener( GameCommands.GET_GAME_DATA );
+			this.addMessageListener( GameCommands.GET_GAMES_DATA );
 		}
 		
 		override public function receiveMessage(message:MessageData):void
@@ -145,6 +146,12 @@ package game.control.game
 				}
 					
 				case GameCommands.GET_GAME_DATA:
+				{
+					message.data = _session.getGameData( uint(message.data) ) ;
+					break;
+				}
+					
+				case GameCommands.GET_GAMES_DATA:
 				{
 					message.data = _session.gamesData;
 					break;
