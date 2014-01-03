@@ -2,11 +2,10 @@ package game.core.game
 {
 	import broadcast.BroadcastModule;
 	
-	import utils.updater.TimerUpdater;
+	import utils.updater.Updater;
 	
 	public class GameMainModule extends BroadcastModule
 	{
-		private static const UPDATE_PERIOD:			uint = 100;
 		
 		public function GameMainModule()
 		{
@@ -25,14 +24,12 @@ package game.core.game
 		
 		private function initTimer():void
 		{
-			var timer:TimerUpdater = new TimerUpdater();
-			timer.startTimer(UPDATE_PERIOD);
-			timer.addListener( update );
+			Updater.get().addListener( update );
 		}
 		
 		
 		
-		private function update():void
+		private function update(ms:Number):void
 		{
 			
 		}

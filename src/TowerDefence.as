@@ -9,9 +9,14 @@ package
 	
 	import game.control.AppRootModule;
 	
+	import utils.updater.Updater;
+	
+	[SWF(frameRate="60")]
 	public class TowerDefence extends Sprite
 	{
 		private var _appRootModule:			AppRootModule;
+		
+		private var _updater:				Updater;
 		
 		public function TowerDefence()
 		{
@@ -31,8 +36,18 @@ package
 			
 			stage.color = 0x0;
 			
+			_updater = new Updater();
+			
+			this.addEventListener(Event.ENTER_FRAME, handlerEnterFrame);
+			
 			_appRootModule = new AppRootModule();
 			_appRootModule.init( this.stage );
+		}
+		
+		
+		private function handlerEnterFrame(e:Event):void
+		{
+			_updater.update();
 		}
 	}
 }
