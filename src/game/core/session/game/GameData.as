@@ -8,13 +8,11 @@ package game.core.session.game
 	{
 		private var _gameData:			StaticGameData;
 		
-		private var _waves:				Vector.<WaveData>;
-		private var _IWaves:			Vector.<IWaveData>;
+		private var _waves:				Vector.<IWaveData>;
 		
 		public function GameData()
 		{
 			_waves  = new Vector.<WaveData>;
-			_IWaves = new Vector.<IWaveData>;
 		}
 		
 		public function setStaticData(data:StaticGameData):void
@@ -28,7 +26,6 @@ package game.core.session.game
 				waveData.setStaticData( _gameData.waves[i] );
 				
 				_waves.push( waveData );
-				_IWaves.push( waveData );
 			}
 		}
 		
@@ -49,7 +46,7 @@ package game.core.session.game
 		
 		public function get waves():Vector.<IWaveData>
 		{
-			return _IWaves;
+			return _waves;
 		}
 		
 		public function get towers():Vector.<uint>

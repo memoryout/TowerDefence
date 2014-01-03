@@ -59,6 +59,18 @@ package game.core.session
 		public function get gamesData():Vector.<IGameData>
 		{
 			return _gamesData;
-		}		
+		}
+		
+		public function getGameData(gameId:uint):IGameData
+		{
+			var i:int;
+			i = _gamesData.length;
+			while(i--)
+			{
+				if(_gamesData[i].id == gameId) return _gamesData[i];
+			}
+			
+			return null;
+		}
 	}
 }
