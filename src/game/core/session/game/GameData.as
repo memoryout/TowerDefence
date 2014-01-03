@@ -63,5 +63,10 @@ package game.core.session.game
 		{
 			return _gameData.wave;
 		}
+		
+		public function get map():Vector.<Vector.<int>>
+		{
+			return _gameData.map;
+		}
 	}
 }

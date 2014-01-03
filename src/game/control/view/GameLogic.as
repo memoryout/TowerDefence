@@ -40,7 +40,8 @@ package game.control.view
 				"towers_skin":skinsName, 
 				"balance":messageGameData.data[0].balance, 
 				"life":messageGameData.data[0].life, 
-				"wave":messageGameData.data[0].wave
+				"wave":messageGameData.data[0].wave,
+				"map":messageGameData.data[0].map
 			};
 			
 			this.sendMessage(GameEvents.START_GAME, gameInitData);
