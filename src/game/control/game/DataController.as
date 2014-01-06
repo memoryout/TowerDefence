@@ -8,7 +8,7 @@ package game.control.game
 	import game.core.data.StaticGameData;
 	import game.core.data.StaticMapData;
 	import game.core.data.StaticMobData;
-	import game.core.data.StaticTowerData;
+	import game.core.data.tables.TowersStaticTableItem;
 	import game.core.session.GameMapData;
 	import game.core.session.GameSession;
 	import game.core.session.MobData;
@@ -18,7 +18,7 @@ package game.control.game
 	import game.interfaces.IGameData;
 	import game.interfaces.IGlobalMapData;
 	import game.interfaces.IMobData;
-	import game.interfaces.ITowerData;
+	import game.interfaces.data.ITowerData;
 	import game.interfaces.IUserInfo;
 	
 	public class DataController extends BroadcastModule
@@ -58,7 +58,7 @@ package game.control.game
 				globalMapData.addMap( sessionMapData );
 			}
 					
-			var staticTowersData:Vector.<StaticTowerData>;
+			var staticTowersData:Vector.<TowersStaticTableItem>;
 			var towerData:TowerData;
 			var sessionTowerData:Vector.<ITowerData>;
 			

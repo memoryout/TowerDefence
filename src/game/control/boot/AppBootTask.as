@@ -5,6 +5,7 @@ package game.control.boot
 	import game.control.game.MainGameController;
 	import game.control.tasks.LoadGameStaticData;
 	import game.control.view.MainViewController;
+	import game.core.data.StaticDataManagerCommands;
 	import game.errors.ErrorsDescription;
 	import game.task.SimpleTask;
 	import game.task.TaskEvent;
@@ -86,10 +87,19 @@ package game.control.boot
 		}
 		
 		
-		private function handlerLoadStaticData(task:SimpleTask):void
+		private function handlerLoadStaticData(task:LoadGameStaticData):void
 		{
+			var files:Vector.<String> = task.filesData;
+			
 			task.destroy();
-			this.dispachLocalEvent( TaskEvent.COMPLETE, this );
+			
+			var i:int;
+			for(i = 0; i < files.length; i++)
+			{
+				this.sendMessage(StaticDataManagerCommands.PARSE_STATIC_DATA, files[i]);
+			}
+			
+			//this.dispachLocalEvent( TaskEvent.COMPLETE, this );
 		}
 	}
 }

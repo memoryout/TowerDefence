@@ -1,17 +1,17 @@
 package game.core.session
 {
-	import game.core.data.StaticTowerData;
-	import game.interfaces.ITowerData;
+	import game.core.data.tables.TowersStaticTableItem;
+	import game.interfaces.data.ITowerData;
 
 	public class TowerData implements ITowerData
 	{
-		private var _towersData:	StaticTowerData;
+		private var _towersData:	TowersStaticTableItem;
 		
 		public function TowerData()
 		{
 		}
 		
-		public function setStaticData(data:StaticTowerData):void
+		public function setStaticData(data:TowersStaticTableItem):void
 		{
 			_towersData = data;
 		}

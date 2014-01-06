@@ -15,7 +15,10 @@ package game.control.tasks
 	
 	public class LoadGameStaticData extends SimpleTask
 	{
-		private var _mainGameController:			MainGameController;
+		private var _urls:							Vector.<String>;
+		private var _files:							Vector.<String>;
+		
+		private var _loader:						URLLoader;
 		
 		public function LoadGameStaticData()
 		{
@@ -24,15 +27,33 @@ package game.control.tasks
 		
 		override public function run(...args):void
 		{
-			var url:String = args[0];
+			_urls = args[0];
 			
-			_mainGameController = args[1];
+			_files = new Vector.<String>;
 			
-			
-			var loader:URLLoader = new URLLoader();
-			loader.addEventListener(Event.COMPLETE, handlerLoadData);
-			loader.addEventListener(IOErrorEvent.IO_ERROR, handlerErrorLoadData);
-			loader.load( new URLRequest(url) );
+			loadNextFile();
+		}
+		
+		
+		public function get filesData():Vector.<String>
+		{
+			return _files;
+		}
+		
+		
+		private function loadNextFile():void
+		{
+			if(_urls.length)
+			{
+				_loader = new URLLoader();
+				_loader.addEventListener(Event.COMPLETE, handlerLoadData);
+				_loader.addEventListener(IOErrorEvent.IO_ERROR, handlerErrorLoadData);
+				_loader.load( new URLRequest(_urls.shift()) );
+			}
+			else
+			{
+				this.dispachLocalEvent( TaskEvent.COMPLETE, this );
+			}
 		}
 		
 		
@@ -40,6 +61,8 @@ package game.control.tasks
 		{
 			e.currentTarget.removeEventListener(Event.COMPLETE, handlerLoadData);
 			e.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, handlerErrorLoadData);
+			
+			_loader = null;
 			
 			this.dispachLocalEvent( TaskEvent.ERROR, ErrorsDescription.ERROR_LOAD_GAME_STATIC_DATA );
 			this.destroy();
@@ -51,28 +74,28 @@ package game.control.tasks
 			e.currentTarget.removeEventListener(Event.COMPLETE, handlerLoadData);
 			e.currentTarget.removeEventListener(IOErrorEvent.IO_ERROR, handlerErrorLoadData);
 			
-			parserStaticData(e.currentTarget.data as String);
-		}
-		
-		
-		private function parserStaticData(data:String):void
-		{
-			this.addMessageListener( StaticDataManagerCommands.EVENT_PARSING_COMPLETE );
-			this.sendMessage( StaticDataManagerCommands.PARSE_STATIC_DATA, data);
+			_files.push( e.currentTarget.data as String);
 			
-			//this.dispachLocalEvent( TaskEvent.COMPLETE, this );
+			_loader = null;
+			
+			loadNextFile();
 		}
 		
-		override public function receiveMessage(message:MessageData):void
+		
+		override public function destroy():void
 		{
-			switch(message.message)
+			_urls = null;
+			_files = null;
+			
+			if(_loader)
 			{
-				case StaticDataManagerCommands.EVENT_PARSING_COMPLETE:
-				{
-					this.dispachLocalEvent( TaskEvent.COMPLETE, this );
-					break;
-				}
+				_loader.removeEventListener(Event.COMPLETE, handlerLoadData);
+				_loader.removeEventListener(IOErrorEvent.IO_ERROR, handlerErrorLoadData);
 			}
+			
+			_loader = null;
+			
+			super.destroy();
 		}
 	}
 }

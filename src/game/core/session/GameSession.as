@@ -4,7 +4,7 @@ package game.core.session
 	import game.core.session.game.GameData;
 	import game.interfaces.IGameData;
 	import game.interfaces.IMobData;
-	import game.interfaces.ITowerData;
+	import game.interfaces.data.ITowerData;
 
 	public class GameSession
 	{
