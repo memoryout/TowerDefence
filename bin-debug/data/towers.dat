@@ -1,0 +1,11 @@
+@type=xml
+@table=towers
+@content=<xml>
+				<towers>
+					<tower id="0" speed="1" aoe="0" damage="0" cost="0" range="0" skills="-" lock="false">
+				   		<skin>-</skin>
+				   		<description>-</description>
+				   		<title>-</title>
+					</tower>
+				</towers>
+			</xml>

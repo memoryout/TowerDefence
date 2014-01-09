@@ -1,0 +1,13 @@
+@type=xml
+@table=worlds
+@content=<xml>
+				<worlds>
+					<world id="1" image="LightWorld">
+						<description>-</description>
+						<title>0</title>
+						<points>
+							<point mapId="Map_0" y="0" id="0" title="point_0" stars="0" x="0"/>
+						</points>
+					</world>
+				</worlds>
+			</xml>

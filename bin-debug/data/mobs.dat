@@ -1,0 +1,11 @@
+@type=xml
+@table=mobs
+@content=<xml>
+			<mobs>
+				<mob ability="-" hp="0" bounty="0" armor="-" id="0" level="0">
+					<skin>-</skin>
+					<description>-</description>
+					<title>-</title>
+				</mob>
+			</mobs>
+		</xml>

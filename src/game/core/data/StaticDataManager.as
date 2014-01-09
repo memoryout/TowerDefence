@@ -6,12 +6,14 @@ package game.core.data
 	import game.core.data.tables.MobsStaticTable;
 	import game.core.data.tables.TowersStaticTable;
 	import game.core.data.tables.TowersStaticTableItem;
+	import game.core.data.tables.WorldsStaticTable;
 	import game.task.TaskEvent;
 	
 	public class StaticDataManager extends BroadcastModule
 	{
 		private var _towersTable:				TowersStaticTable;
 		private var _mobsTable:					MobsStaticTable;
+		private var _worlds:					WorldsStaticTable;
 		
 		public function StaticDataManager()
 		{
@@ -97,6 +99,12 @@ package game.core.data
 				case "mobs":
 				{
 					_mobsTable = task.table as MobsStaticTable;
+					break;
+				}
+					
+				case "worlds":
+				{
+					_worlds = task.table as WorldsStaticTable;
 					break;
 				}
 			}

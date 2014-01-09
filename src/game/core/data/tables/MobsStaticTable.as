@@ -20,11 +20,13 @@ package game.core.data.tables
 		{
 			var xml:XML = new XML(str);
 			
-			var par:String, mobsList:XML, mobItem:MobsStaticTableItem;
+			var par:String, mobs:XMLList, mobsList:XML, mobItem:MobsStaticTableItem;
 			
-			for(par in xml.*)
+			mobs = xml.mobs;
+			
+			for(par in mobs.*)
 			{
-				mobsList = xml.*[par];
+				mobsList = mobs.*[par];
 				
 				mobItem = new MobsStaticTableItem();
 				mobItem.ability = String( mobsList.@ability );

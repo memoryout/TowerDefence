@@ -6,6 +6,7 @@ package game.core.data
 	import game.core.data.tables.MobsStaticTable;
 	import game.core.data.tables.TowersStaticTable;
 	import game.core.data.tables.WorldsStaticTable;
+	import game.core.data.tables.maps.MapsStaticTable;
 	import game.task.SimpleTask;
 	import game.task.TaskEvent;
 
@@ -48,6 +49,12 @@ package game.core.data
 				case "worlds":
 				{
 					parseWorldsTable();
+					break;
+				}
+					
+				case "maps":
+				{
+					parseMapsTable();
 					break;
 				}
 			}
@@ -155,5 +162,14 @@ package game.core.data
 			_staticTable = new WorldsStaticTable();
 			_staticTable.parse( _content, _type );
 		}
+		
+		
+		//--------------------------- MAPS TABLE ------------------
+		private function parseMapsTable():void
+		{
+			_staticTable = new MapsStaticTable();
+			_staticTable.parse( _content, _type );
+		}
+		
 	}
 }

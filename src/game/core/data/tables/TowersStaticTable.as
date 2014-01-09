@@ -22,11 +22,13 @@ package game.core.data.tables
 		{
 			var xml:XML = new XML(str);
 			
-			var par:String, towerList:XML, towerItem:TowersStaticTableItem;
+			var par:String, towers:XMLList, towerList:XML, towerItem:TowersStaticTableItem;
 			
-			for(par in xml.*)
+			towers = xml.towers;
+			
+			for(par in towers.*)
 			{
-				towerList = xml.*[par];
+				towerList = towers.*[par];
 				
 				towerItem = new TowersStaticTableItem();
 				towerItem.id = uint( towerList.@id );
