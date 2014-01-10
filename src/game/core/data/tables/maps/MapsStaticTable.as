@@ -18,11 +18,25 @@ package game.core.data.tables.maps
 			else parseJSONData(value);
 		}
 		
+		
+		public function getItemById(id:uint):MapsStaticTableItem
+		{
+			var i:int;
+			i = _items.length;
+			while(i--)
+			{
+				if(_items[i].id == id) return _items[i];
+			}
+			
+			return null;
+		}
+		
+		
 		private function parseXMLData(str:String):void
 		{
 			var xml:XML = new XML(str);
 			
-			var par:String, maps:XMLList, mapList:XML, mapItem:MapsStaticTableItem, par2:String, waves:XMLList, waveItem:MapsStaticTableItemWave;
+			var par:String, maps:XMLList, mapList:XML, mapItem:MapsStaticTableItem, par2:String, waves:XML, waveItem:MapsStaticTableItemWave;
 			var meshList:XMLList, rowArr:Array, i:int, rowV:Vector.<int>;
 			
 			maps = xml.maps;
@@ -57,7 +71,22 @@ package game.core.data.tables.maps
 					mapItem.towers.push( uint(meshList.*[par].@id) );
 				}
 				
+				meshList = mapList.waves;
 				
+				for(par2 in meshList.*)
+				{
+					waves = meshList.*[par2];
+					
+					waveItem = new MapsStaticTableItemWave();
+					waveItem.id = uint( waves.@id );
+					waveItem.quantity = uint( waves.@quantity );
+					waveItem.startTime = Number( waves.@startTime );
+					waveItem.time = Number( waves.@time );
+					
+					waveItem.mobId = uint( waves.mob.@id );
+					
+					mapItem.waves.push( waveItem );
+				}
 				
 				_items.push( mapItem );
 			}

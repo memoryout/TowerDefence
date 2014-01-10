@@ -24,7 +24,7 @@ package game.control.view
 		private function getGlobalDataAndShowGameWindow():void
 		{
 			var messageGameData:MessageData   = this.sendMessage(GameCommands.GET_GAMES_DATA);
-			var messageTowersData:MessageData = this.sendMessage(GameCommands.GET_TOWERS_DATA);
+			var messageTowersData:MessageData = this.sendMessage(GameCommands.GET_SESSION_TOWERS_DATA);
 			
 			var skinsName:Array = new Array(), i:int;
 			

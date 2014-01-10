@@ -3,7 +3,6 @@ package game.control.game
 	import broadcast.BroadcastModule;
 	import broadcast.message.MessageData;
 	
-	import game.core.data.StaticMapData;
 	import game.core.data.StaticDataManager;
 	import game.core.data.StaticDataManagerCommands;
 	import game.core.game.GameMainModule;
@@ -26,9 +25,21 @@ package game.control.game
 		}
 		
 		
+		public function initGameSessionData():void
+		{
+			_dataController.initDefaultUserSession();
+		}
+		
+		
+		public function applySavedSessionData():void
+		{
+			
+		}
+		
+		
 		public function initDefaultUser():void
 		{
-			_dataController.initDefaultUser();
+			
 		}
 		
 		public function setSavedData(str:String):void
@@ -39,7 +50,7 @@ package game.control.game
 		
 		public function initGame():void
 		{
-			_dataController.initSessionData();
+			
 		}
 		
 		

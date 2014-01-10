@@ -18,6 +18,12 @@ package game.core.data.tables
 		}
 		
 		
+		public function getItems():Vector.<TowersStaticTableItem>
+		{
+			return _items;
+		}
+		
+		
 		private function parseXMLData(str:String):void
 		{
 			var xml:XML = new XML(str);

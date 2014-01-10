@@ -17,7 +17,7 @@ package game.control.boot
 		{
 			_mainGameController = args[0] as MainGameController;
 			
-			_mainGameController.initGame();
+			_mainGameController.initDefaultUser();
 			
 			loadSavedData();
 		}

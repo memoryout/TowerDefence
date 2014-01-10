@@ -4,146 +4,163 @@ package game.control.game
 	import broadcast.message.MessageData;
 	
 	import game.GameCommands;
+	import game.control.game.map.StaticMapData;
 	import game.core.data.StaticDataManagerCommands;
-	import game.core.data.StaticGameData;
-	import game.core.data.StaticMapData;
-	import game.core.data.StaticMobData;
+	import game.core.data.tables.MobsStaticTableItem;
 	import game.core.data.tables.TowersStaticTableItem;
+	import game.core.data.tables.WorldsStaticTableItem;
+	import game.core.data.tables.maps.MapsStaticTableItem;
 	import game.core.session.GameMapData;
 	import game.core.session.GameSession;
 	import game.core.session.MobData;
 	import game.core.session.TowerData;
 	import game.core.session.WorldGlobalData;
 	import game.core.session.game.GameData;
-	import game.interfaces.IGameData;
-	import game.interfaces.IGlobalMapData;
-	import game.interfaces.IMobData;
-	import game.interfaces.data.ITowerData;
+	import game.core.session.tables.StaticMobData;
+	import game.core.session.tables.StaticTowerData;
+	import game.core.session.tables.StaticWorldData;
 	import game.interfaces.IUserInfo;
+	import game.interfaces.data.IMobData;
+	import game.interfaces.data.ITowerData;
+	import game.interfaces.data.IWorldData;
 	
 	public class DataController extends BroadcastModule
 	{
 		private var _session:				GameSession;
+		
+		private var _mapData:				StaticMapData;
 		
 		public function DataController()
 		{
 			super();
 			
 			initListener();
-		}		
-		
-		public function initDefaultUser():void
-		{
-			
-		}		
-		
-		public function initSessionData():void
-		{
-			_session = GameSession.get();
-			
-			var staticMapData:Vector.<StaticMapData>;
-			var messageData:MessageData;
-			var globalMapData:WorldGlobalData;
-			
-			messageData 	= this.sendMessage( StaticDataManagerCommands.GET_ALL_MAPS_DATA );
-			staticMapData 	= messageData.data;
-			
-			globalMapData	= _session.worldData;
-			
-			var i:int, sessionMapData:GameMapData;
-			for(i = 0; i < staticMapData.length; i++)
-			{
-				sessionMapData = new GameMapData();
-				sessionMapData.setStaticData( staticMapData[i] );
-				globalMapData.addMap( sessionMapData );
-			}
-					
-			var staticTowersData:Vector.<TowersStaticTableItem>;
-			var towerData:TowerData;
-			var sessionTowerData:Vector.<ITowerData>;
-			
-			messageData 	 = this.sendMessage( StaticDataManagerCommands.GET_TOWERS_DATA );
-			staticTowersData = messageData.data;
-			sessionTowerData = _session.towersData;
-			
-			for(i = 0; i < staticTowersData.length; i++)
-			{
-				towerData = new TowerData();
-				towerData.setStaticData( staticTowersData[i] );
-				
-				sessionTowerData.push( towerData );
-			}			
-			
-			var staticMobsData:Vector.<StaticMobData>;
-			var mobData:MobData;
-			var sessionMobsData:Vector.<IMobData>;
-			
-			messageData 	= this.sendMessage( StaticDataManagerCommands.GET_MOBS_DATA );
-			staticMobsData 	= messageData.data;
-			sessionMobsData = _session.mobsData;
-			
-			for(i = 0; i < staticMobsData.length; i++)
-			{
-				mobData = new MobData();
-				mobData.setStaticData( staticMobsData[i] );
-				sessionMobsData.push( mobData );
-			}
-						
-			var staticGameData:Vector.<StaticGameData>;
-			var gameData:GameData;
-			var sessionGameData:Vector.<IGameData>;
-			
-			messageData 	= this.sendMessage( StaticDataManagerCommands.GET_GAMES_DATA );
-			staticGameData 	= messageData.data;
-			sessionGameData = _session.gamesData;
-		
-			for(i = 0; i < staticGameData.length; i++)
-			{
-				gameData = new GameData();
-				gameData.setStaticData( staticGameData[i] );
-				sessionGameData.push( gameData );
-			}
 		}
 		
 		
 		private function initListener():void
 		{
-			this.addMessageListener( GameCommands.GET_GLOBAL_MAP_DATA );
+			this.addMessageListener( GameCommands.GET_SESSION_MOBS_DATA );
+			this.addMessageListener( GameCommands.GET_SESSION_TOWERS_DATA );
+			this.addMessageListener( GameCommands.GET_SESSION_WORLDS_DATA);
+			
+			/*this.addMessageListener( GameCommands.GET_GLOBAL_MAP_DATA );
 			this.addMessageListener( GameCommands.GET_MAP_DATA );
 			this.addMessageListener( GameCommands.GET_USER_INFO );
 			this.addMessageListener( GameCommands.GET_MOBS_DATA );
 			this.addMessageListener( GameCommands.GET_TOWERS_DATA );
 			this.addMessageListener( GameCommands.GET_GAME_DATA );
-			this.addMessageListener( GameCommands.GET_GAMES_DATA );
+			this.addMessageListener( GameCommands.GET_GAMES_DATA );*/
 		}
+		
+		public function initDefaultUserSession():void
+		{
+			_session = GameSession.get();
+			
+			initSessionWorldsData();
+			initSessionTowersData();
+			initSessionMobsData();
+		}
+		
+		
+		private function initSessionWorldsData():void
+		{
+			var message:MessageData = this.sendMessage( StaticDataManagerCommands.GET_WORLDS_DATA );
+			var staticData:Vector.<WorldsStaticTableItem>, sessionWorldItem:StaticWorldData, sessionWorldVector:Vector.<IWorldData>;
+			
+			staticData = message.data as Vector.<WorldsStaticTableItem>;
+			sessionWorldVector = _session.worldsData;
+			
+			var i:int;
+			for(i = 0; i < staticData.length; i++)
+			{
+				sessionWorldItem = new StaticWorldData();
+				sessionWorldItem.setStaticData( staticData[i] );
+				sessionWorldVector.push( sessionWorldItem );
+			}
+		}
+		
+		
+		private function initSessionTowersData():void
+		{
+			var message:MessageData = this.sendMessage( StaticDataManagerCommands.GET_TOWERS_DATA );
+			var staticData:Vector.<TowersStaticTableItem>, sessionTowerData:StaticTowerData, sessionTowersVector:Vector.<ITowerData>;
+			
+			staticData = message.data as Vector.<TowersStaticTableItem>;
+			sessionTowersVector = _session.towersData;
+			
+			var i:int;
+			for(i = 0; i < staticData.length; i++)
+			{
+				sessionTowerData = new StaticTowerData();
+				sessionTowerData.setStaticData( staticData[i] );
+				sessionTowersVector.push( sessionTowerData );
+			}
+		}
+		
+		
+		private function initSessionMobsData():void
+		{
+			var message:MessageData = this.sendMessage( StaticDataManagerCommands.GET_MOBS_DATA );
+			var staticData:Vector.<MobsStaticTableItem>, sessionMobData:StaticMobData, sessionMobsVector:Vector.<IMobData>;
+			
+			staticData = message.data as Vector.<MobsStaticTableItem>;
+			sessionMobsVector = _session.mobsData;
+			
+			var i:int;
+			for(i = 0; i < staticData.length; i++)
+			{
+				sessionMobData = new StaticMobData();
+				sessionMobData.setStaticData( staticData[i] );
+				sessionMobsVector.push( sessionMobData );
+			}
+		}
+		
+		
+		
 		
 		override public function receiveMessage(message:MessageData):void
 		{
 			switch(message.message)
 			{
-				case GameCommands.GET_GLOBAL_MAP_DATA:
+				case GameCommands.GET_SESSION_WORLDS_DATA:
 				{
-					message.data = _session.worldData as IGlobalMapData;
+					message.data = _session.worldsData;
 					break;
 				}
 					
-				case GameCommands.GET_USER_INFO:
+				case GameCommands.GET_SESSION_TOWERS_DATA:
 				{
-					message.data = _session.userInfo as IUserInfo;
+					message.data = _session.towersData;
 					break;
 				}
-					
-				case GameCommands.GET_MOBS_DATA:
+				
+				case GameCommands.GET_SESSION_MOBS_DATA:
 				{
 					message.data = _session.mobsData;
 					break;
 				}
 					
-				case GameCommands.GET_TOWERS_DATA:
+					
+				case GameCommands.GET_STATIC_MAP_DATA:
 				{
-					message.data = _session.towersData;
+					message.data = getStaticMapData( uint( message.data) )
 					break;
 				}
+				
+				
+					
+					
+				
+				/*case GameCommands.GET_USER_INFO:
+				{
+					message.data = _session.userInfo as IUserInfo;
+					break;
+				}
+					
+				
+					
+				
 					
 				case GameCommands.GET_GAME_DATA:
 				{
@@ -155,8 +172,24 @@ package game.control.game
 				{
 					message.data = _session.gamesData;
 					break;
-				}
+				}*/
 			}
+		}
+		
+		
+		private function getStaticMapData(mapId:uint):StaticMapData
+		{
+			var message:MessageData = this.sendMessage( StaticDataManagerCommands.GET_MAP_DATA_BY_ID, mapId );
+			
+			var staticMapData:MapsStaticTableItem = message.data as MapsStaticTableItem;
+			
+			if(staticMapData)
+			{
+				_mapData.setStaticData( staticMapData );
+				return _mapData;
+			}
+			
+			return null;
 		}
 	}
 }

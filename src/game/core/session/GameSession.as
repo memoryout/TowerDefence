@@ -1,23 +1,23 @@
 package game.core.session
 {
-	import game.core.data.StaticMapData;
 	import game.core.session.game.GameData;
-	import game.interfaces.IGameData;
-	import game.interfaces.IMobData;
+	import game.interfaces.data.IMobData;
 	import game.interfaces.data.ITowerData;
+	import game.interfaces.data.IWorldData;
 
 	public class GameSession
 	{
 		private static const _this:			GameSession = new GameSession();
 		
 		
-		private const _userInfo:			UserInfo 			= new UserInfo();
+		private const _worlds:				Vector.<IWorldData> = new Vector.<IWorldData>;
 		
-		private const _globalMapData:		WorldGlobalData 	= new WorldGlobalData();
+		private const _towers:				Vector.<ITowerData> = new Vector.<ITowerData>;
 		
 		private const _mobsData:			Vector.<IMobData> 	= new Vector.<IMobData>;
-		private const _towersData:			Vector.<ITowerData> = new Vector.<ITowerData>;
-		private const _gamesData:			Vector.<IGameData>  = new Vector.<IGameData>;
+		
+		
+		private const _userInfo:			UserInfo 			= new UserInfo();
 		
 		public function GameSession()
 		{
@@ -35,9 +35,10 @@ package game.core.session
 			
 		}
 		
-		public function get worldData():WorldGlobalData
+		
+		public function get worldsData():Vector.<IWorldData>
 		{
-			return _globalMapData;
+			return _worlds;
 		}
 				
 		
@@ -53,24 +54,7 @@ package game.core.session
 		
 		public function get towersData():Vector.<ITowerData>
 		{
-			return _towersData;
-		}
-		
-		public function get gamesData():Vector.<IGameData>
-		{
-			return _gamesData;
-		}
-		
-		public function getGameData(gameId:uint):IGameData
-		{
-			var i:int;
-			i = _gamesData.length;
-			while(i--)
-			{
-				if(_gamesData[i].id == gameId) return _gamesData[i];
-			}
-			
-			return null;
+			return _towers;
 		}
 	}
 }

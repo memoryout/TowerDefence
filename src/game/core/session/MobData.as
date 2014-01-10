@@ -2,7 +2,7 @@ package game.core.session
 {
 	import game.core.data.StaticMapData;
 	import game.core.data.StaticMobData;
-	import game.interfaces.IMobData;
+	import game.interfaces.data.IMobData;
 
 	public class MobData implements IMobData
 	{

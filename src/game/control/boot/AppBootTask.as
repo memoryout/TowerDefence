@@ -99,7 +99,7 @@ package game.control.boot
 				this.sendMessage(StaticDataManagerCommands.PARSE_STATIC_DATA, files[i]);
 			}
 			
-			//this.dispachLocalEvent( TaskEvent.COMPLETE, this );
+			this.dispachLocalEvent( TaskEvent.COMPLETE, this );
 		}
 	}
 }

@@ -7,13 +7,15 @@ package game.core.data
 	import game.core.data.tables.TowersStaticTable;
 	import game.core.data.tables.TowersStaticTableItem;
 	import game.core.data.tables.WorldsStaticTable;
+	import game.core.data.tables.maps.MapsStaticTable;
 	import game.task.TaskEvent;
 	
 	public class StaticDataManager extends BroadcastModule
 	{
 		private var _towersTable:				TowersStaticTable;
 		private var _mobsTable:					MobsStaticTable;
-		private var _worlds:					WorldsStaticTable;
+		private var _worldsTable:				WorldsStaticTable;
+		private var _mapsTable:					MapsStaticTable;
 		
 		public function StaticDataManager()
 		{
@@ -30,6 +32,7 @@ package game.core.data
 			this.addMessageListener( StaticDataManagerCommands.GET_MOBS_DATA );
 			this.addMessageListener( StaticDataManagerCommands.GET_TOWERS_DATA );
 			this.addMessageListener( StaticDataManagerCommands.GET_GAMES_DATA );
+			this.addMessageListener( StaticDataManagerCommands.GET_WORLDS_DATA );
 		}
 		
 		
@@ -37,9 +40,23 @@ package game.core.data
 		{
 			switch(message.message)
 			{
+				
 				case StaticDataManagerCommands.PARSE_STATIC_DATA:
 				{
 					parseData(message.data as String)
+					break;
+				}
+					
+				case StaticDataManagerCommands.GET_WORLDS_DATA:
+				{
+					message.data = _worldsTable.getItems();
+					break;
+				}
+					
+					
+				case StaticDataManagerCommands.GET_MAP_DATA_BY_ID:
+				{
+					message.data = _mapsTable.getItemById( uint(message.data) );
 					break;
 				}
 					
@@ -51,13 +68,13 @@ package game.core.data
 					
 				case StaticDataManagerCommands.GET_MOBS_DATA:
 				{
-					//message.data = _mobs;
+					message.data = _mobsTable.getItems();
 					break;
 				}
 					
 				case StaticDataManagerCommands.GET_TOWERS_DATA:
 				{
-					//message.data = _towers;
+					message.data = _towersTable.getItems();
 					break;
 				}
 					
@@ -79,11 +96,6 @@ package game.core.data
 			parser.addListener(TaskEvent.COMPLETE, handlerParsingComplete);
 			parser.run( str );
 		}	
-				
-		private function parseWorldDataXML(xml:XML):void
-		{
-			
-		}
 		
 		
 		private function handlerParsingComplete(task:TableParser):void
@@ -104,16 +116,16 @@ package game.core.data
 					
 				case "worlds":
 				{
-					_worlds = task.table as WorldsStaticTable;
+					_worldsTable = task.table as WorldsStaticTable;
+					break;
+				}
+					
+				case "maps":
+				{
+					_mapsTable = task.table as MapsStaticTable;
 					break;
 				}
 			}
-		}
-		
-		
-		private function parseWorldData(data:Object):void
-		{
-			
 		}
 	}
 }

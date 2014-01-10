@@ -16,6 +16,13 @@ package game.core.data.tables
 			else parseJSONData(value);
 		}
 		
+		
+		public function getItems():Vector.<MobsStaticTableItem>
+		{
+			return _items;
+		}
+		
+		
 		private function parseXMLData(str:String):void
 		{
 			var xml:XML = new XML(str);

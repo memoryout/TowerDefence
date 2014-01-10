@@ -1,4 +1,4 @@
-package game.interfaces
+package game.interfaces.data
 {
 	public interface IMobData
 	{

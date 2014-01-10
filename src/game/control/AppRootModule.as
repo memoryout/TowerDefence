@@ -12,7 +12,6 @@ package game.control
 	import game.control.view.GameLogic;
 	import game.control.view.MainViewController;
 	import game.control.view.MenuLogic;
-	import game.interfaces.IGlobalMapData;
 	import game.task.ISimpleTask;
 	import game.task.SimpleTask;
 	import game.task.TaskEvent;

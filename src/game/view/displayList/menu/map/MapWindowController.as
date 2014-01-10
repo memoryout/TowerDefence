@@ -5,8 +5,8 @@ package game.view.displayList.menu.map
 	
 	import game.GameCommands;
 	import game.core.data.StaticDataManagerCommands;
-	import game.interfaces.IGlobalMapData;
-	import game.interfaces.IMapData;
+	//import game.interfaces.IGlobalMapData;
+	//import game.interfaces.IMapData;
 	import game.view.displayList.menu.MenuData;
 	import game.view.events.MenuEvents;
 
@@ -20,7 +20,7 @@ package game.view.displayList.menu.map
 			
 			initListener();
 			var message:MessageData = this.sendMessage(GameCommands.GET_GLOBAL_MAP_DATA);
-			updateMap(message.data);
+			//updateMap(message.data);
 			
 		}
 		
@@ -35,7 +35,7 @@ package game.view.displayList.menu.map
 			this.addMessageListener( GameCommands.GET_GLOBAL_MAP_DATA );
 		}
 		
-		private function updateMap(obj:IGlobalMapData):void
+		/*private function updateMap(obj:IGlobalMapData):void
 		{
 			var maps:Vector.<IMapData> = obj.getMaps() as Vector.<IMapData>;
 			
@@ -46,7 +46,7 @@ package game.view.displayList.menu.map
 				
 				_infoWindowView.createPrimaryLocation(maps[i].id, titele_description, maps[i].image, maps[i].isLocked, maps[i].getPointsData());
 			}			
-		}
+		}*/
 		
 		override public function receiveMessage(message:MessageData):void 
 		{			

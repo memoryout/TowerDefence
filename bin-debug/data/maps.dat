@@ -36,9 +36,7 @@
 						
 						<waves>
 							<wave time="0" id="0" quantity="0" startTime="0">
-								<mobs>
-									<mob id="0"/>
-								</mobs>
+								<mob id="0"/>
 							</wave>
 						</waves>
 					</map>
