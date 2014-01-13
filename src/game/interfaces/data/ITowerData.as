@@ -7,7 +7,6 @@ package game.interfaces.data
 		function get speed():Number;
 		function get range():int;
 		function get aoe():String;
-		function get level():uint;
 		function get type():String;
 		function get cost():Number;
 		function get skill():String;
