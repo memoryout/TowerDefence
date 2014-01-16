@@ -5,8 +5,7 @@ package game.view.displayList.menu.map
 	
 	import game.GameCommands;
 	import game.core.data.StaticDataManagerCommands;
-	//import game.interfaces.IGlobalMapData;
-	//import game.interfaces.IMapData;
+	import game.interfaces.data.IWorldData;
 	import game.view.displayList.menu.MenuData;
 	import game.view.events.MenuEvents;
 
@@ -19,8 +18,8 @@ package game.view.displayList.menu.map
 			_infoWindowView = viewComponent as MapWindowView;
 			
 			initListener();
-			var message:MessageData = this.sendMessage(GameCommands.GET_GLOBAL_MAP_DATA);
-			//updateMap(message.data);
+			var message:MessageData = this.sendMessage(GameCommands.GET_SESSION_WORLDS_DATA);
+			updateMap(message.data);
 			
 		}
 		
@@ -35,18 +34,18 @@ package game.view.displayList.menu.map
 			this.addMessageListener( GameCommands.GET_GLOBAL_MAP_DATA );
 		}
 		
-		/*private function updateMap(obj:IGlobalMapData):void
+		private function updateMap(worlds:Vector.<IWorldData>):void
 		{
-			var maps:Vector.<IMapData> = obj.getMaps() as Vector.<IMapData>;
+			//var maps:Vector.<IMapData> = obj.getMaps() as Vector.<IMapData>;
 			
 			var i:int;
-			for (i = 0; i < maps.length; i++) 
+			for (i = 0; i < worlds.length; i++) 
 			{
-				var titele_description:Array = [maps[i].title, maps[i].description];					
+				var titele_description:Array = [worlds[i].title, worlds[i].description];					
 				
-				_infoWindowView.createPrimaryLocation(maps[i].id, titele_description, maps[i].image, maps[i].isLocked, maps[i].getPointsData());
+				_infoWindowView.createPrimaryLocation(worlds[i].id, titele_description, worlds[i].image, worlds[i].isLocked, worlds[i].getPoints());
 			}			
-		}*/
+		}
 		
 		override public function receiveMessage(message:MessageData):void 
 		{			

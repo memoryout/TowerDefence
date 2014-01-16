@@ -7,7 +7,7 @@ package game.view.displayList.menu.map
 	import flash.events.MouseEvent;
 	import flash.system.ApplicationDomain;
 	
-	//import game.interfaces.IMapPoint;
+	import game.interfaces.data.IWorldPointData;
 	import game.view.displayList.menu.MenuData;
 	import game.view.displayList.menu.PrimaryWindow;
 	
@@ -137,7 +137,7 @@ package game.view.displayList.menu.map
 		 * @param points - data about points on simple part of map.
 		 * 
 		 */		
-		/*public function createPrimaryLocation(id:int, title_description:Array, image_name:String, enable_status:Boolean, points:Vector.<IMapPoint>):void
+		public function createPrimaryLocation(id:int, title_description:Array, image_name:String, enable_status:Boolean, points:Vector.<IWorldPointData>):void
 		{
 			// add new element to "primaryPartsOfMapContainer" with name "image_name"
 			var _primaryMapClass:Class = ApplicationDomain.currentDomain.getDefinition(image_name) as Class;
@@ -149,8 +149,11 @@ package game.view.displayList.menu.map
 			// set x coordinates for new element with id > 0
 			if(id > 0)
 			{
-				var zeroElement:MovieClip = primaryPartsOfMapContainer.getChildByName((id-1).toString()) as MovieClip;				
-				_primaryMapElement.x = zeroElement.x + zeroElement.width;
+				var zeroElement:MovieClip = primaryPartsOfMapContainer.getChildByName((id-1).toString()) as MovieClip;	
+				if(zeroElement)
+				{
+					_primaryMapElement.x = zeroElement.x + zeroElement.width;
+				}
 			}
 			
 			for (var i:String in points)
@@ -174,6 +177,6 @@ package game.view.displayList.menu.map
 			}
 			
 			addChildAt(primaryPartsOfMapContainer, 0);
-		}*/
+		}
 	}
 }

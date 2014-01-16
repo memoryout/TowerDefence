@@ -10,6 +10,7 @@ package game.core.data
 		public static const GET_WORLDS_DATA:			uint = UintCounter.getId();
 		public static const GET_MOBS_DATA:				uint = UintCounter.getId();
 		public static const GET_TOWERS_DATA:			uint = UintCounter.getId();
+		public static const GET_TOWER_DATA_BY_ID:			uint = UintCounter.getId();
 		public static const GET_MAP_DATA_BY_ID:			uint = UintCounter.getId(); 
 		
 		

@@ -10,6 +10,8 @@ package game.control.game
 	
 	public class MainGameController extends BroadcastModule
 	{
+		public static const MODULE_NAME:		String = "mainGameController";
+		
 		private var _mainGameCore:			GameMainModule;
 		private var _staticDataManager:		StaticDataManager;
 		
@@ -21,6 +23,8 @@ package game.control.game
 		{
 			super();
 			
+			setSharedModule( MODULE_NAME, this );
+			
 			initModules();
 		}
 		
@@ -31,24 +35,24 @@ package game.control.game
 		}
 		
 		
-		public function applySavedSessionData():void
-		{
-			
-		}
-		
-		
 		public function initDefaultUser():void
 		{
 			
 		}
+		
 		
 		public function setSavedData(str:String):void
 		{
 			
 		}
 		
-		
 		public function initGame():void
+		{
+			
+		}
+		
+		
+		public function initNewGame(mapId:uint):void
 		{
 			
 		}

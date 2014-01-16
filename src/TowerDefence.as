@@ -35,8 +35,9 @@ package
 			NativeApplication.nativeApplication.removeEventListener(InvokeEvent.INVOKE, handlerInvoke);
 			
 			stage.color = 0x0;
-			
+						
 			_updater = new Updater();
+						
 			
 			this.addEventListener(Event.ENTER_FRAME, handlerEnterFrame);
 			

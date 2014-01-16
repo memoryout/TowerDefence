@@ -33,6 +33,8 @@ package game.core.data
 			this.addMessageListener( StaticDataManagerCommands.GET_TOWERS_DATA );
 			this.addMessageListener( StaticDataManagerCommands.GET_GAMES_DATA );
 			this.addMessageListener( StaticDataManagerCommands.GET_WORLDS_DATA );
+			this.addMessageListener( StaticDataManagerCommands.GET_TOWER_DATA_BY_ID);
+			this.addMessageListener( StaticDataManagerCommands.GET_MAP_DATA_BY_ID );
 		}
 		
 		
@@ -75,6 +77,12 @@ package game.core.data
 				case StaticDataManagerCommands.GET_TOWERS_DATA:
 				{
 					message.data = _towersTable.getItems();
+					break;
+				}
+					
+				case StaticDataManagerCommands.GET_TOWER_DATA_BY_ID:
+				{
+					message.data = _towersTable.getItemById( uint(message.data) );
 					break;
 				}
 					

@@ -9,10 +9,12 @@ package game.core.session.tables
 		private var _data:			WorldsStaticTableItem;
 		
 		private var _point:			Vector.<IWorldPointData>;
+		private var _isLocked:		Boolean;
 		
 		public function StaticWorldData()
 		{
 			_point = new Vector.<IWorldPointData>;
+			_isLocked = false;
 		}
 		
 		
@@ -49,6 +51,13 @@ package game.core.session.tables
 		{
 			return _data.title;
 		}
+		
+		
+		public function get isLocked():Boolean
+		{
+			return _isLocked;
+		}
+		
 		
 		public function getPoints():Vector.<IWorldPointData>
 		{

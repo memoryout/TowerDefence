@@ -8,6 +8,9 @@ package game.core.data.tables.maps
 		public var towers:			Vector.<uint> = new Vector.<uint>;
 		public var waves:			Vector.<MapsStaticTableItemWave> = new Vector.<MapsStaticTableItemWave>;
 		
+		public var image:			String;
+		public var life:			Number;
+		
 		public function MapsStaticTableItem()
 		{
 		}

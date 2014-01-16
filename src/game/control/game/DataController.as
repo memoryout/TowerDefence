@@ -43,6 +43,8 @@ package game.control.game
 			this.addMessageListener( GameCommands.GET_SESSION_MOBS_DATA );
 			this.addMessageListener( GameCommands.GET_SESSION_TOWERS_DATA );
 			this.addMessageListener( GameCommands.GET_SESSION_WORLDS_DATA);
+			this.addMessageListener( GameCommands.GET_STATIC_MAP_DATA);
+			this.addMessageListener( GameCommands.GET_SESSION_TOWER_DATA_BY_ID);
 			
 			/*this.addMessageListener( GameCommands.GET_GLOBAL_MAP_DATA );
 			this.addMessageListener( GameCommands.GET_MAP_DATA );
@@ -134,6 +136,14 @@ package game.control.game
 					message.data = _session.towersData;
 					break;
 				}
+					
+					
+				case GameCommands.GET_SESSION_TOWER_DATA_BY_ID:
+				{
+					message.data = this.sendMessage( StaticDataManagerCommands.GET_TOWER_DATA_BY_ID, message.data );
+					break;
+				}
+				
 				
 				case GameCommands.GET_SESSION_MOBS_DATA:
 				{
@@ -185,6 +195,8 @@ package game.control.game
 			
 			if(staticMapData)
 			{
+				if(!_mapData) _mapData = new StaticMapData();
+				
 				_mapData.setStaticData( staticMapData );
 				return _mapData;
 			}

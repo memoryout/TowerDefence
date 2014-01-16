@@ -75,7 +75,7 @@ package game.view.displayList.game
 		{
 			_balanceTxt.text = obj.balance.toString();
 			_lifeTxt.text    = obj.life.toString();
-			_waveTxt.text    = obj.wave.toString();			
+			//_waveTxt.text    = obj.wave.toString();			
 			
 			/// add background to view
 			var _viewClass:Class = ApplicationDomain.currentDomain.getDefinition( obj.game_bg.toString()) as Class;

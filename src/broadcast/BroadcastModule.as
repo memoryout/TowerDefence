@@ -5,10 +5,13 @@ package broadcast
 	
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
+	import flash.utils.Dictionary;
 	
 	public class BroadcastModule extends EventDispatcher implements IBroadcastModule
 	{
 		private static const _broadcastDispacther:		Dispatcher = new Dispatcher();
+		
+		private static const MODULES:					Dictionary = new Dictionary();
 		
 		private var _messages:				Object;
 		
@@ -35,6 +38,17 @@ package broadcast
 		protected function sendMessage(messageId:uint, data:* = null):MessageData
 		{
 			return _broadcastDispacther.sendMessage(messageId, data);
+		}
+		
+		
+		protected function setSharedModule(name:String, module:BroadcastModule):void
+		{
+			MODULES[name] = module;
+		}
+		
+		protected function getSharedModule(name:String):BroadcastModule
+		{
+			return MODULES[name];
 		}
 		
 		

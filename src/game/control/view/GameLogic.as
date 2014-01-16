@@ -4,6 +4,11 @@ package game.control.view
 	import broadcast.message.MessageData;
 	
 	import game.GameCommands;
+	import game.control.game.tasks.StartGameTask;
+	import game.core.data.tables.TowersStaticTableItem;
+	import game.interfaces.data.IMapData;
+	import game.interfaces.data.ITowerData;
+	import game.task.TaskEvent;
 	import game.view.events.GameEvents;
 	import game.view.events.MenuEvents;
 	
@@ -18,32 +23,69 @@ package game.control.view
 		private function initMessages():void
 		{
 			this.addMessageListener( MenuEvents.SHOW_GAME_WINDOW );
-			this.addMessageListener( GameCommands.GET_GAMES_DATA );
 		}
+		
+		
+		private function startNewGame():void
+		{
+			var task:StartGameTask = new StartGameTask();
+			task.addListener(TaskEvent.COMPLETE, handlerNewGameStart);
+			task.addListener(TaskEvent.ERROR, handlerErrorStartNewGame);
+			task.run();
+		}
+		
+		
+		private function handlerNewGameStart(task:StartGameTask):void
+		{
+			getGlobalDataAndShowGameWindow();
+			task.destroy();
+		}
+		
+		private function handlerErrorStartNewGame(task:StartGameTask):void
+		{
+			task.destroy();
+		}
+		
 		
 		private function getGlobalDataAndShowGameWindow():void
 		{
-			var messageGameData:MessageData   = this.sendMessage(GameCommands.GET_GAMES_DATA);
+			var messageGameData:MessageData   = this.sendMessage(GameCommands.GET_STATIC_MAP_DATA, 0);
 			var messageTowersData:MessageData = this.sendMessage(GameCommands.GET_SESSION_TOWERS_DATA);
 			
-			var skinsName:Array = new Array(), i:int;
 			
-			for (i = 0; i < messageGameData.data[0].towers.length; i++) 
+			var staticMapData:IMapData = messageGameData.data as IMapData;
+			var towers:Vector.<ITowerData> = messageTowersData.data as Vector.<ITowerData>;
+			
+			
+			if(staticMapData == null ||towers == null )
 			{
-				var towerId:int = messageGameData.data[0].towers[i];
-				skinsName.push(messageTowersData.data[towerId].skin) 
+				return;
+			}
+			
+			
+			var skinsName:Array = new Array(), i:int, messageTower:MessageData, towerItem:TowersStaticTableItem;
+				
+			for (i = 0; i < staticMapData.towers.length; i++) 
+			{
+				messageTower = this.sendMessage(GameCommands.GET_SESSION_TOWER_DATA_BY_ID, staticMapData.towers[i]);
+				towerItem = messageTower.data as TowersStaticTableItem
+				
+				if(towerItem)
+				{
+					skinsName.push( towerItem.skin );
+				}
 			}	
-			
+				
 			var gameInitData:Object = 
-			{
-				"game_bg":messageGameData.data[0].image, 
-				"towers_skin":skinsName, 
-				"balance":messageGameData.data[0].balance, 
-				"life":messageGameData.data[0].life, 
-				"wave":messageGameData.data[0].wave,
-				"map":messageGameData.data[0].map
-			};
-			
+				{
+					"game_bg":staticMapData.image, 
+					"towers_skin":skinsName, 
+					"balance":staticMapData.balance, 
+					"life":staticMapData.life, 
+					"wave":staticMapData.waves,
+					"map":staticMapData.mesh
+				};
+				
 			this.sendMessage(GameEvents.START_GAME, gameInitData);
 		}
 		
@@ -53,7 +95,8 @@ package game.control.view
 			{	
 				case MenuEvents.SHOW_GAME_WINDOW:
 				{
-					getGlobalDataAndShowGameWindow();
+					startNewGame();
+					//getGlobalDataAndShowGameWindow();
 					break;
 				}
 			}

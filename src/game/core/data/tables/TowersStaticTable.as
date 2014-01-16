@@ -23,6 +23,17 @@ package game.core.data.tables
 			return _items;
 		}
 		
+		public function getItemById(id:uint):TowersStaticTableItem
+		{
+			var i:int;
+			for(i = 0; i < _items.length; i++)
+			{
+				if(_items[i].id == id) return _items[i];
+			}
+			
+			return null;
+		}
+		
 		
 		private function parseXMLData(str:String):void
 		{

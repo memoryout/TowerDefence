@@ -8,7 +8,10 @@ package game
 		
 		
 		public static const GET_SESSION_WORLDS_DATA:	uint = UintCounter.getId();
+		
 		public static const GET_SESSION_TOWERS_DATA:	uint = UintCounter.getId();
+		public static const GET_SESSION_TOWER_DATA_BY_ID:uint = UintCounter.getId();
+		
 		public static const GET_SESSION_MOBS_DATA:		uint = UintCounter.getId();
 		
 		public static const GET_STATIC_MAP_DATA:		uint = UintCounter.getId();

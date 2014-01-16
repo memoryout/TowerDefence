@@ -6,6 +6,7 @@ package game.interfaces.data
 		function get image():String;
 		function get description():String;
 		function get title():String;
+		function get isLocked():Boolean;
 		
 		function getPoints():Vector.<IWorldPointData>
 	}

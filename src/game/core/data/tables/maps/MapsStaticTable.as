@@ -47,6 +47,8 @@ package game.core.data.tables.maps
 				
 				mapItem = new MapsStaticTableItem();
 				mapItem.id = uint( mapList.@id );
+				mapItem.image = String( mapList.@image );
+				mapItem.life = Number( mapList.@life );
 				
 				meshList = mapList.mesh;
 				

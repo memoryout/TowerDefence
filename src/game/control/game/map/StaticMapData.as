@@ -49,5 +49,21 @@ package game.control.game.map
 		{
 			return null;
 		}
+		
+		public function get balance():Number
+		{
+			return 0;
+		}
+		
+		
+		public function get life():Number
+		{
+			return _data.life;
+		}
+		
+		public function get image():String
+		{
+			return _data.image;
+		}
 	}
 }

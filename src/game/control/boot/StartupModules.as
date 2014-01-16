@@ -47,8 +47,6 @@ package game.control.boot
 		{
 			task.destroy();
 			
-			_mainGameController.initDefaultUser();
-			
 			this.dispachLocalEvent( TaskEvent.COMPLETE, this );
 		}
 	}

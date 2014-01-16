@@ -6,5 +6,8 @@ package game.interfaces.data
 		function get mesh():Vector.<Vector.<int>>;
 		function get towers():Vector.<uint>;
 		function get waves():IWaveData;
+		function get image():String;
+		function get balance():Number;
+		function get life():Number;
 	}
 }
