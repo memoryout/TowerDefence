@@ -23,6 +23,19 @@ package game.core.data.tables
 		}
 		
 		
+		public function getItemById(id:uint):MobsStaticTableItem
+		{
+			var i:int = _items.length;
+			
+			while(i--)
+			{
+				if(_items[i].id == id) return _items[i];
+			}
+			
+			return null;
+		}
+		
+		
 		private function parseXMLData(str:String):void
 		{
 			var xml:XML = new XML(str);

@@ -1,5 +1,6 @@
 package game.control.game.map
 {
+	import game.core.data.tables.maps.MapStaticTableItemPath;
 	import game.core.data.tables.maps.MapsStaticTableItem;
 	import game.interfaces.data.IMapData;
 	import game.interfaces.data.IWaveData;
@@ -64,6 +65,11 @@ package game.control.game.map
 		public function get image():String
 		{
 			return _data.image;
+		}
+		
+		public function get pathsList():Vector.<MapStaticTableItemPath>
+		{
+			return _data.paths;
 		}
 	}
 }

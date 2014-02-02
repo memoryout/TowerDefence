@@ -8,6 +8,7 @@ package game.core.data.tables.maps
 		public var quantity:		uint;
 		
 		public var mobId:			uint;
+		public var path:			uint;
 		
 		public function MapsStaticTableItemWave()
 		{

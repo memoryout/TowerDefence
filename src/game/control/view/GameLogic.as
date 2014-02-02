@@ -6,6 +6,7 @@ package game.control.view
 	import game.GameCommands;
 	import game.control.game.tasks.StartGameTask;
 	import game.core.data.tables.TowersStaticTableItem;
+	import game.core.game.data.ActiveGameStateData;
 	import game.interfaces.data.IMapData;
 	import game.interfaces.data.ITowerData;
 	import game.task.TaskEvent;
@@ -14,6 +15,8 @@ package game.control.view
 	
 	public class GameLogic extends BroadcastModule
 	{
+		private var _gameStateObject:			ActiveGameStateData;
+		
 		public function GameLogic()
 		{
 			super();
@@ -31,14 +34,16 @@ package game.control.view
 			var task:StartGameTask = new StartGameTask();
 			task.addListener(TaskEvent.COMPLETE, handlerNewGameStart);
 			task.addListener(TaskEvent.ERROR, handlerErrorStartNewGame);
-			task.run();
+			task.run(0); 			// надо что бы вместо 0 передавался реальный id карты
 		}
 		
 		
 		private function handlerNewGameStart(task:StartGameTask):void
 		{
-			getGlobalDataAndShowGameWindow();
+			_gameStateObject = task.gameStateObject;
 			task.destroy();
+			
+			getGlobalDataAndShowGameWindow();
 		}
 		
 		private function handlerErrorStartNewGame(task:StartGameTask):void

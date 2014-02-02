@@ -54,7 +54,7 @@ package game.control.game
 		
 		public function initNewGame(mapId:uint):void
 		{
-			
+			_dataController.loadMap(mapId);
 		}
 		
 		

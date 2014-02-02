@@ -1,9 +1,10 @@
 package game.core.session
 {
-	import game.core.session.game.GameData;
+	import game.core.session.game.GameMapData;
 	import game.interfaces.data.IMobData;
 	import game.interfaces.data.ITowerData;
 	import game.interfaces.data.IWorldData;
+	import game.interfaces.data.game.IGameMapData;
 
 	public class GameSession
 	{
@@ -18,6 +19,9 @@ package game.core.session
 		
 		
 		private const _userInfo:			UserInfo 			= new UserInfo();
+		
+		
+		private const _gameMapData:			GameMapData = new GameMapData();
 		
 		public function GameSession()
 		{
@@ -55,6 +59,12 @@ package game.core.session
 		public function get towersData():Vector.<ITowerData>
 		{
 			return _towers;
+		}
+		
+		
+		public function get gameMapData():IGameMapData
+		{
+			return _gameMapData;
 		}
 	}
 }

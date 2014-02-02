@@ -11,6 +11,8 @@ package game.core.data.tables.maps
 		public var image:			String;
 		public var life:			Number;
 		
+		public var paths:			Vector.<MapStaticTableItemPath> = new Vector.<MapStaticTableItemPath>;
+		
 		public function MapsStaticTableItem()
 		{
 		}

@@ -38,6 +38,7 @@ package game.core.data.tables.maps
 			
 			var par:String, maps:XMLList, mapList:XML, mapItem:MapsStaticTableItem, par2:String, waves:XML, waveItem:MapsStaticTableItemWave;
 			var meshList:XMLList, rowArr:Array, i:int, rowV:Vector.<int>;
+			var path:MapStaticTableItemPath;
 			
 			maps = xml.maps;
 			
@@ -86,12 +87,38 @@ package game.core.data.tables.maps
 					waveItem.time = Number( waves.@time );
 					
 					waveItem.mobId = uint( waves.mob.@id );
+					waveItem.path = uint( waves.mob.@path);
 					
 					mapItem.waves.push( waveItem );
 				}
 				
+				meshList = mapList.paths;
+				
+				for(par2 in meshList.*)
+				{
+					waves = meshList.*[par2];
+					
+					path = new MapStaticTableItemPath();
+					path.id = uint( waves.@id );
+					path.points = convertPoint( String( waves.*[par] ) )
+					mapItem.paths.push( path );
+				}
+				
 				_items.push( mapItem );
 			}
+		}
+		
+		
+		private function convertPoint(value:String):Vector.<uint>
+		{
+			var v:Vector.<uint>;
+			var arr:Array = value.split(",");
+			
+			v = new Vector.<uint>(arr.length, true);
+			
+			var i:int;
+			for(i = 0; i < arr.length; i++) v[i] = uint(arr[i]);
+			return v;
 		}
 		
 		

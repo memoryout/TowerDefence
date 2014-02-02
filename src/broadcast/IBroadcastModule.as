@@ -4,7 +4,7 @@ package broadcast
 	
 	import flash.events.IEventDispatcher;
 
-	public interface IBroadcastModule extends IEventDispatcher
+	public interface IBroadcastModule
 	{
 		function receiveMessage(message:MessageData):void;
 		function destroy():void;

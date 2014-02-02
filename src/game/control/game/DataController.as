@@ -10,12 +10,7 @@ package game.control.game
 	import game.core.data.tables.TowersStaticTableItem;
 	import game.core.data.tables.WorldsStaticTableItem;
 	import game.core.data.tables.maps.MapsStaticTableItem;
-	import game.core.session.GameMapData;
 	import game.core.session.GameSession;
-	import game.core.session.MobData;
-	import game.core.session.TowerData;
-	import game.core.session.WorldGlobalData;
-	import game.core.session.game.GameData;
 	import game.core.session.tables.StaticMobData;
 	import game.core.session.tables.StaticTowerData;
 	import game.core.session.tables.StaticWorldData;
@@ -35,6 +30,12 @@ package game.control.game
 			super();
 			
 			initListener();
+		}
+		
+		
+		public function loadMap(mapId:uint):void
+		{
+			
 		}
 		
 		
