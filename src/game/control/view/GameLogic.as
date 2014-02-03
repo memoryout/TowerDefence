@@ -6,6 +6,7 @@ package game.control.view
 	import game.GameCommands;
 	import game.control.game.tasks.StartGameTask;
 	import game.core.data.tables.TowersStaticTableItem;
+	import game.core.game.GameCoreCommands;
 	import game.core.game.data.ActiveGameStateData;
 	import game.interfaces.data.IMapData;
 	import game.interfaces.data.ITowerData;
@@ -13,9 +14,12 @@ package game.control.view
 	import game.view.events.GameEvents;
 	import game.view.events.MenuEvents;
 	
+	import utils.updater.Updater;
+	
 	public class GameLogic extends BroadcastModule
 	{
 		private var _gameStateObject:			ActiveGameStateData;
+		private var task:						StartGameTask;
 		
 		public function GameLogic()
 		{
@@ -26,15 +30,15 @@ package game.control.view
 		private function initMessages():void
 		{
 			this.addMessageListener( MenuEvents.SHOW_GAME_WINDOW );
+			this.addMessageListener(GameEvents.START_GAME);
 		}
 		
 		
 		private function startNewGame():void
 		{
-			var task:StartGameTask = new StartGameTask();
+			task = new StartGameTask();
 			task.addListener(TaskEvent.COMPLETE, handlerNewGameStart);
-			task.addListener(TaskEvent.ERROR, handlerErrorStartNewGame);
-			task.run(0); 			// надо что бы вместо 0 передавался реальный id карты
+			task.addListener(TaskEvent.ERROR, handlerErrorStartNewGame);			
 		}
 		
 		
@@ -55,25 +59,19 @@ package game.control.view
 		private function getGlobalDataAndShowGameWindow():void
 		{
 			var messageGameData:MessageData   = this.sendMessage(GameCommands.GET_STATIC_MAP_DATA, 0);
-			var messageTowersData:MessageData = this.sendMessage(GameCommands.GET_SESSION_TOWERS_DATA);
-			
+			var messageTowersData:MessageData = this.sendMessage(GameCommands.GET_SESSION_TOWERS_DATA);			
 			
 			var staticMapData:IMapData = messageGameData.data as IMapData;
-			var towers:Vector.<ITowerData> = messageTowersData.data as Vector.<ITowerData>;
+			var towers:Vector.<ITowerData> = messageTowersData.data as Vector.<ITowerData>;			
 			
-			
-			if(staticMapData == null ||towers == null )
-			{
-				return;
-			}
-			
+			if(staticMapData == null ||towers == null )	return;					
 			
 			var skinsName:Array = new Array(), i:int, messageTower:MessageData, towerItem:TowersStaticTableItem;
 				
 			for (i = 0; i < staticMapData.towers.length; i++) 
 			{
 				messageTower = this.sendMessage(GameCommands.GET_SESSION_TOWER_DATA_BY_ID, staticMapData.towers[i]);
-				towerItem = messageTower.data as TowersStaticTableItem
+				towerItem = messageTower.data as TowersStaticTableItem;
 				
 				if(towerItem)
 				{
@@ -91,7 +89,20 @@ package game.control.view
 					"map":staticMapData.mesh
 				};
 				
-			this.sendMessage(GameEvents.START_GAME, gameInitData);
+			this.sendMessage(GameEvents.INIT_GAME, gameInitData);
+		}
+		
+		private function startTimer():void
+		{
+			Updater.get().addListener( updateAction );
+		}
+		
+		private function updateAction(ms:Number):void
+		{			
+			for (var i:int = 0; i < _gameStateObject.notifications.length; i++) 
+			{
+				trace(_gameStateObject.notifications[i]);
+			}			
 		}
 		
 		override public function receiveMessage(message:MessageData):void 
@@ -101,7 +112,15 @@ package game.control.view
 				case MenuEvents.SHOW_GAME_WINDOW:
 				{
 					startNewGame();
-					//getGlobalDataAndShowGameWindow();
+					getGlobalDataAndShowGameWindow();
+					
+					break;
+				}
+				
+				case GameEvents.START_GAME:
+				{
+					task.run(0); 			// надо что бы вместо 0 передавался реальный id карты
+					startTimer();
 					break;
 				}
 			}

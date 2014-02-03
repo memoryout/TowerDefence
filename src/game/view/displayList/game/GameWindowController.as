@@ -17,7 +17,7 @@ package game.view.displayList.game
 		{
 			_contentContainer = contentContainer;
 			
-			_mainWindowView = new GameWindowView(_contentContainer);
+			_mainWindowView = new GameWindowView(_contentContainer, this);
 			_contentContainer.addChild(_mainWindowView);
 			
 			initMessages();
@@ -25,7 +25,7 @@ package game.view.displayList.game
 		
 		private function initMessages():void
 		{
-			this.addMessageListener( GameEvents.START_GAME );
+			this.addMessageListener( GameEvents.INIT_GAME );
 		}
 		
 		private function initMainElements(obj:Object):void
@@ -34,11 +34,16 @@ package game.view.displayList.game
 			_mainWindowView.initMainElements(obj);			
 		}
 		
+		public function startGame():void
+		{
+			this.sendMessage(GameEvents.START_GAME, null);
+		}
+		
 		override public function receiveMessage(message:MessageData):void 
 		{			
 			switch(message.message)
 			{	
-				case GameEvents.START_GAME:
+				case GameEvents.INIT_GAME:
 				{
 					initMainElements(message.data);
 					break;

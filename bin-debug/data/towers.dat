@@ -1,11 +1,141 @@
 @type=xml
 @table=towers
 @content=<xml>
-				<towers>
-					<tower id="0" speed="1" aoe="0" damage="0" cost="0" range="0" skills="-" lock="false">
-				   		<skin>-</skin>
-				   		<description>-</description>
-				   		<title>-</title>
-					</tower>
-				</towers>
+				 <towers>
+				    <tower speed="0.31" damage="12" id="0" aoe="150/300" lock="false" cost="50" range="500" skills="-">
+				      <skin>Tower_0_0</skin>
+				      <description>-</description>
+				      <title>Fire</title>
+				      <upgrades>
+				        <upgrade speed="0.31" damage="60" level="0" lock="false" cost="175" id="0" type="" aoe="150/300" range="500" skills="-">
+				          <description>-</description>
+				          <skin>Tower_0_1</skin>
+				          <title>Amplified Fire</title>
+				        </upgrade>
+				        <upgrade speed="0.31" damage="300" level="0" lock="false" cost="625" id="0" type="" aoe="150/300" range="500" skills="-">
+				          <description>-</description>
+				          <skin>Tower_0_2</skin>
+				          <title>Focused Fire</title>
+				        </upgrade>
+				        <upgrade speed="0.31" damage="1500" level="0" lock="false" cost="2125" id="0" type="" aoe="150/300" range="500" skills="-">
+				          <description>-</description>
+				          <skin>Tower_0_3</skin>
+				          <title>Refined Fire</title>
+				        </upgrade>
+				        <upgrade speed="0.31" damage="22500" level="0" lock="false" cost="11225" id="0" type="" aoe="150/300" range="500" skills="-">
+				          <description>-</description>
+				          <skin>Tower_0_4</skin>
+				          <title>Pure Fire</title>
+				        </upgrade>
+				      </upgrades>
+				    </tower>
+				    <tower speed="0.66" damage="80" id="1" aoe="-" lock="false" cost="50" range="900" skills="-">
+				      <skin>Tower_1_0</skin>
+				      <description>-</description>
+				      <title>Nature</title>
+				      <upgrades>
+				        <upgrade speed="0.66" damage="400" level="0" lock="false" cost="175" id="1" type="" aoe="-" range="900" skills="-">
+				          <description>-</description>
+				          <skin>Tower_1_1</skin>
+				          <title>Amplified Nature</title>
+				        </upgrade>
+				        <upgrade speed="0.66" damage="2000" level="0" lock="false" cost="625" id="1" type="" aoe="-" range="900" skills="-">
+				          <description>-</description>
+				          <skin>Tower_1_2</skin>
+				          <title>Focused Nature</title>
+				        </upgrade>
+				        <upgrade speed="0.66" damage="10000" level="0" lock="false" cost="2125" id="1" type="" aoe="-" range="900" skills="-">
+				          <description>-</description>
+				          <skin>Tower_1_3</skin>
+				          <title>Refined Nature</title>
+				        </upgrade>
+				        <upgrade speed="0.66" damage="15000" level="0" lock="false" cost="11225" id="1" type="" aoe="-" range="900" skills="-">
+				          <description>-</description>
+				          <skin>Tower_1_4</skin>
+				          <title>Pure Nature</title>
+				        </upgrade>
+				      </upgrades>
+				    </tower>
+				    <tower speed="1" damage="29" id="2" aoe="150/300" lock="false" cost="50" range="700" skills="-">
+				      <skin>Tower_2_0</skin>
+				      <description>-</description>
+				      <title>Earth</title>
+				      <upgrades>
+				        <upgrade speed="1" damage="145" id="2" cost="175" aoe="150/300" lock="false" range="700" skills="-">
+				          <skin>Tower_2_1</skin>
+				          <description>-</description>
+				          <title>Amplified Earth</title>
+				        </upgrade>
+				        <upgrade speed="1" damage="725" id="2" cost="625" aoe="150/300" lock="false" range="700" skills="-">
+				          <skin>Tower_2_2</skin>
+				          <description>-</description>
+				          <title>Focused Earth</title>
+				        </upgrade>
+				        <upgrade speed="1" damage="3625" id="2" cost="2125" aoe="150/300" lock="false" range="700" skills="-">
+				          <skin>Tower_2_3</skin>
+				          <description>-</description>
+				          <title>Refined Earth</title>
+				        </upgrade>
+				        <upgrade speed="1" damage="54375" id="2" cost="11225" aoe="150/300" lock="false" range="700" skills="-">
+				          <skin>Tower_2_4</skin>
+				          <description>-</description>
+				          <title>Pure Earth</title>
+				        </upgrade>
+				      </upgrades>
+				    </tower>
+				    <tower speed="0.31" damage="18" id="3" aoe="100/200" lock="false" cost="50" range="700" skills="-">
+				      <skin>Tower_3_0</skin>
+				      <description>-</description>
+				      <title>Water</title>
+				      <upgrades>
+				        <upgrade speed="0.31" damage="90" id="3" cost="175" aoe="100/200" lock="false" range="700" skills="-">
+				          <skin>Tower_3_1</skin>
+				          <description>-</description>
+				          <title>Amplified Water</title>
+				        </upgrade>
+				        <upgrade speed="0.31" damage="450" id="3" cost="625" aoe="100/200" lock="false" range="700" skills="-">
+				          <skin>Tower_3_2</skin>
+				          <description>-</description>
+				          <title>Focused Water</title>
+				        </upgrade>
+				        <upgrade speed="0.31" damage="2250" id="3" cost="2125" aoe="100/200" lock="false" range="700" skills="-">
+				          <skin>Tower_3_3</skin>
+				          <description>-</description>
+				          <title>Refined Water</title>
+				        </upgrade>
+				        <upgrade speed="0.31" damage="33750" id="3" cost="11225" aoe="100/200" lock="false" range="700" skills="-">
+				          <skin>Tower_3_4</skin>
+				          <description>-</description>
+				          <title>Pure Water</title>
+				        </upgrade>
+				      </upgrades>
+				    </tower>
+				    <tower speed="0.66" damage="57" id="4" aoe="-" lock="false" cost="50" range="1500" skills="-">
+				      <skin>Tower_4_0</skin>
+				      <description>-</description>
+				      <title>Light</title>
+				      <upgrades>
+				        <upgrade speed="0.66" damage="285" id="4" cost="175" aoe="-" lock="false" range="1500" skills="-">
+				          <skin>Tower_4_1</skin>
+				          <description>-</description>
+				          <title>Amplified Light</title>
+				        </upgrade>
+				        <upgrade speed="0.66" damage="1425" id="4" cost="625" aoe="-" lock="false" range="1500" skills="-">
+				          <skin>Tower_4_2</skin>
+				          <description>-</description>
+				          <title>Focused Light</title>
+				        </upgrade>
+				        <upgrade speed="0.66" damage="7125" id="4" cost="2125" aoe="-" lock="false" range="1500" skills="-">
+				          <skin>Tower_4_3</skin>
+				          <description>-</description>
+				          <title>Refined Light</title>
+				        </upgrade>
+				        <upgrade speed="0.66" damage="106875" id="4" cost="11225" aoe="-" lock="false" range="1500" skills="-">
+				          <skin>Tower_4_4</skin>
+				          <description>-</description>
+				          <title>Pure Light</title>
+				        </upgrade>
+				      </upgrades>
+				    </tower>
+				  </towers>
 			</xml>

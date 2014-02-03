@@ -38,7 +38,7 @@
 						</towers>
 						
 						<waves>
-							<wave time="1000" id="0" quantity="1" startTime="0" path="0">
+							<wave time="1000" id="0" quantity="10" startTime="0" path="0">
 								<mob id="0"/>
 							</wave>
 						</waves>

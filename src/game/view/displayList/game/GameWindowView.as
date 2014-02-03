@@ -20,6 +20,9 @@ package game.view.displayList.game
 		
 		private const BUTTON_CONTIANER_NAME:	String = "buttonContainer";
 		
+		private const PLAY_BUTTON:				String = "BtnPlay";
+		private const PAUSE_BUTTON:				String = "BtnPause";
+		
 		private var _controller:				GameWindowController;
 		
 		private var _buttonContianer:			MovieClip;	
@@ -34,24 +37,27 @@ package game.view.displayList.game
 		
 		private var possibkePositionOnMap:		Vector.<Vector.<int>>;
 		
-		public function GameWindowView(contentContainer:Sprite)
+		private var pauseButton:				MovieClip;
+		private var playButton:					MovieClip;
+		
+		public function GameWindowView(contentContainer:Sprite, controller:GameWindowController)
 		{
 			_contentContainer = contentContainer;
+			_controller		  = controller;
+			
 			super();
-		}
-		
-		private function addLinks():void
-		{
-			var _viewClass:Class = ApplicationDomain.currentDomain.getDefinition( CLASS_NAME) as Class;
-			var _viewElement:MovieClip = new _viewClass();
-					
-//			_buttonContianer = _viewElement.getChildByName(BUTTON_CONTIANER_NAME) as MovieClip;
 		}
 		
 		private function addListeners():void
 		{
 			/*_buttonContianer.addEventListener(MouseEvent.CLICK, mClick);
 			_buttonContianer.buttonMode = true;*/
+			
+			playButton.addEventListener(MouseEvent.CLICK, mClick);
+			pauseButton.addEventListener(MouseEvent.CLICK, mClick);
+			
+			playButton.buttonMode = true;		
+			pauseButton.buttonMode = true;		
 		}
 		
 		public function addContainerToView():void
@@ -64,11 +70,25 @@ package game.view.displayList.game
 			_balanceTxt = _viewElement.getChildByName(BALANCE_TXT_NAME) as TextField;
 			_lifeTxt 	= _viewElement.getChildByName(LIFE_TXT_NAME) as TextField;
 			_waveTxt 	= _viewElement.getChildByName(WAVE_TXT_NAME) as TextField;
+			
+			pauseButton = _viewElement.getChildByName(PAUSE_BUTTON) as MovieClip;
+			playButton  = _viewElement.getChildByName(PLAY_BUTTON) as MovieClip;
+			
+			pauseButton.visible = false;
+			
+			addListeners();
 		}
 		
 		private function mClick(e:MouseEvent):void
 		{
-			
+			if(e.currentTarget.name == PLAY_BUTTON)
+			{
+				_controller.startGame();
+				
+			}else if(e.currentTarget.name == PAUSE_BUTTON)
+			{
+				
+			}
 		}
 		
 		public function initMainElements(obj:Object):void

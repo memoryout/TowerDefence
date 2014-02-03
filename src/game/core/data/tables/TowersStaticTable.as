@@ -56,7 +56,7 @@ package game.core.data.tables
 				towerItem.level = uint( towerList.@level );
 				towerItem.range = Number( towerList.@range );
 				towerItem.skill = String( towerList.@skill );
-				towerItem.skin = String( towerList.@skin );
+				towerItem.skin = String( towerList.skin );
 				towerItem.speed = Number( towerList.@speed );
 				towerItem.title = String( towerList.title );
 				towerItem.type = String( towerList.@type );
