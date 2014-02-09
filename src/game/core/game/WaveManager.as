@@ -1,6 +1,7 @@
 package game.core.game
 {
 	import game.core.data.tables.maps.MapsStaticTableItemWave;
+	import game.core.game.data.ActiveGameStateData;
 	import game.core.game.data.InitGameData;
 	import game.core.game.data.wave.WaveData;
 	import game.core.game.world.Environment;
@@ -16,6 +17,7 @@ package game.core.game
 		private var _currentWaveIndex:		uint;
 		private var _currentWave:			WaveData;
 		
+		private var _gameStatusObject:		ActiveGameStateData;
 		
 		private var _waveMobsAmount:		uint;
 		
@@ -34,6 +36,11 @@ package game.core.game
 		public function setEnvironment(env:Environment):void
 		{
 			_environment = env;
+		}
+		
+		public function setGameStatusObject(statusObject:ActiveGameStateData):void
+		{
+			_gameStatusObject = statusObject;
 		}
 		
 		
@@ -61,6 +68,7 @@ package game.core.game
 				mob.init();
 				
 				_environment.addObject( mob );
+				_gameStatusObject.addMob( mob );
 				
 				
 				_waveMobsAmount ++;
