@@ -26,6 +26,8 @@ package game.view.displayList.game
 		private function initMessages():void
 		{
 			this.addMessageListener( GameEvents.INIT_GAME );
+			this.addMessageListener( GameEvents.UPDATE_MOBS_NOTIFICATION );
+			this.addMessageListener( GameEvents.UPDATE_MOBS_MOVE );			
 		}
 		
 		private function initMainElements(obj:Object):void
@@ -48,6 +50,18 @@ package game.view.displayList.game
 					initMainElements(message.data);
 					break;
 				}
+				
+				case GameEvents.UPDATE_MOBS_NOTIFICATION:
+				{
+					_mainWindowView.updateMobsNotification(message.data);
+					break;
+				}	
+					
+				case GameEvents.UPDATE_MOBS_MOVE:
+				{
+					_mainWindowView.updateMobMove(message.data);
+					break;
+				}	
 			}
 		}
 	}

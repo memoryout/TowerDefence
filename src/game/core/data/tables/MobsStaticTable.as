@@ -56,7 +56,7 @@ package game.core.data.tables
 				mobItem.hp = Number( mobsList.@hp );
 				mobItem.id = uint( mobsList.@id );
 				mobItem.level = int( mobsList.@level );
-				mobItem.skin = String( mobsList.@skin );
+				mobItem.skin = String( mobsList.skin );
 				mobItem.title = String( mobsList.title );
 				mobItem.vulnerability = String( mobsList.@vulnerability );
 				

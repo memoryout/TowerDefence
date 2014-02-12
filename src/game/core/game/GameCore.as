@@ -34,6 +34,7 @@ package game.core.game
 			
 			_waveManager.setEnvironment( _environment );
 			_waveManager.setGameData( _initGameData );
+			_waveManager.setGameStatusObject( _activeGameData );
 		}
 		
 		

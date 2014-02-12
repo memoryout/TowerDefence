@@ -8,6 +8,7 @@ package game.control.view
 	import game.core.data.tables.TowersStaticTableItem;
 	import game.core.game.GameCoreCommands;
 	import game.core.game.data.ActiveGameStateData;
+	import game.core.game.world.mobs.SimpleMobObject;
 	import game.interfaces.data.IMapData;
 	import game.interfaces.data.ITowerData;
 	import game.task.TaskEvent;
@@ -98,11 +99,22 @@ package game.control.view
 		}
 		
 		private function updateAction(ms:Number):void
-		{			
-			for (var i:int = 0; i < _gameStateObject.notifications.length; i++) 
-			{
-				trace(_gameStateObject.notifications[i]);
-			}			
+		{	
+			var i:int;
+			
+			for (i = 0; i < _gameStateObject.notifications.length; i++) 
+			{				
+				var newMobData:SimpleMobObject = _gameStateObject.notifications[i].data as SimpleMobObject;
+				
+				this.sendMessage(GameEvents.UPDATE_MOBS_NOTIFICATION, [_gameStateObject.notifications[i], newMobData.getStaticData().skin]);
+			}		
+			
+			_gameStateObject.flushNotifications();			
+			
+			for (i = 0; i < _gameStateObject.mobsList.length; i++) 
+			{	
+				this.sendMessage(GameEvents.UPDATE_MOBS_MOVE, _gameStateObject.mobsList[i]);
+			}
 		}
 		
 		override public function receiveMessage(message:MessageData):void 

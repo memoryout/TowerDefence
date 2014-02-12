@@ -23,7 +23,11 @@ package game.view.displayList.game
 		private const PLAY_BUTTON:				String = "BtnPlay";
 		private const PAUSE_BUTTON:				String = "BtnPause";
 		
+		private const cellSize:					Number = 24;
+		
 		private var _controller:				GameWindowController;
+		
+		private var mobsContainer:				Array;
 		
 		private var _buttonContianer:			MovieClip;	
 		private var _contentContainer:			Sprite;		
@@ -62,6 +66,8 @@ package game.view.displayList.game
 		
 		public function addContainerToView():void
 		{
+			mobsContainer = new Array();
+			
 			var _viewClass:Class = ApplicationDomain.currentDomain.getDefinition( CLASS_NAME) as Class;
 			var _viewElement:MovieClip = new _viewClass();
 			
@@ -154,5 +160,43 @@ package game.view.displayList.game
 		{
 			_contentContainer.removeEventListener(MouseEvent.MOUSE_MOVE, towerMove);
 		}		
+		
+		public function updateMobsNotification(obj:Object):void
+		{			
+			var _viewClass:Class = ApplicationDomain.currentDomain.getDefinition(obj[1]) as Class;
+			var _viewElement:MovieClip = new _viewClass();	
+						
+			if(mobsContainer.indexOf(_viewElement) == -1)
+			{
+				mobsContainer[obj[0].data.envObjectID] = _viewElement;
+				_contentContainer.addChild(_viewElement);			
+			}		
+			
+			for (var i:int = 0; i < mobsContainer.length; i++) 
+			{
+				if(i == obj[0].data.envObjectID)
+				{
+					mobsContainer[i].x = obj[0].data.x*cellSize;
+					mobsContainer[i].y = obj[0].data.y*cellSize;
+				}
+			}						
+		}
+		
+		public function updateMobMove(obj:Object):void
+		{
+			for (var i:int = 0; i < mobsContainer.length; i++) 
+			{
+				if(i == obj.envObjectID)
+				{
+					mobsContainer[i].x = obj.x*cellSize;
+					mobsContainer[i].y = obj.y*cellSize;
+				}
+			}	
+		}
+		
+		private function addMobToView():void
+		{
+			
+		}
 	}
 }

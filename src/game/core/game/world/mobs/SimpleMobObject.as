@@ -46,6 +46,11 @@ package game.core.game.world.mobs
 			_staticData = data;
 		}
 		
+		public function getStaticData():MobsStaticTableItem
+		{
+			return _staticData;
+		}
+		
 		
 		public function setPath(path:PathData):void
 		{
