@@ -8,7 +8,7 @@ package game.control.view
 	import game.core.data.tables.TowersStaticTableItem;
 	import game.core.game.GameCoreCommands;
 	import game.core.game.data.ActiveGameStateData;
-	import game.core.game.world.mobs.SimpleMobObject;
+	import game.core.game.objects.mob.SimpleMobObject;
 	import game.interfaces.data.IMapData;
 	import game.interfaces.data.ITowerData;
 	import game.task.TaskEvent;

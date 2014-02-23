@@ -35,6 +35,8 @@ package game.core.game
 			_waveManager.setEnvironment( _environment );
 			_waveManager.setGameData( _initGameData );
 			_waveManager.setGameStatusObject( _activeGameData );
+			
+			_activeGameData.setEnvironment( _environment );
 		}
 		
 		
@@ -49,8 +51,8 @@ package game.core.game
 			
 			updateTotalGameState();
 			//shiftTime(GameCoreConstants.UPDATE_PERIOD);
-			shiftTime(2000);
-			updateTotalGameState();
+			//shiftTime(2000);
+			//updateTotalGameState();
 			
 			startTimer();
 		}

@@ -8,6 +8,8 @@ package game.control.game
 	import game.core.game.GameMainModule;
 	import game.core.session.GameSession;
 	
+	import utils.updater.Updater;
+	
 	public class MainGameController extends BroadcastModule
 	{
 		public static const MODULE_NAME:		String = "mainGameController";

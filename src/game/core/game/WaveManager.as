@@ -5,7 +5,7 @@ package game.core.game
 	import game.core.game.data.InitGameData;
 	import game.core.game.data.wave.WaveData;
 	import game.core.game.world.Environment;
-	import game.core.game.world.mobs.SimpleMobObject;
+	import game.core.game.objects.mob.SimpleMobObject;
 
 	public class WaveManager
 	{
@@ -67,9 +67,7 @@ package game.core.game
 				mob.setPath( _currentWave.path );
 				mob.init();
 				
-				_environment.addObject( mob );
-				_gameStatusObject.addMob( mob );
-				
+				_environment.pushMob( mob );
 				
 				_waveMobsAmount ++;
 				

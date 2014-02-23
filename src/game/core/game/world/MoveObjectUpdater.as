@@ -1,5 +1,7 @@
 package game.core.game.world
 {
+	import game.core.game.objects.mob.SimpleMobObject;
+
 	public class MoveObjectUpdater
 	{
 		public static var UPDATE_PERIOD:			uint = 32;
@@ -7,6 +9,7 @@ package game.core.game.world
 		private var _lastUpdateValue:			uint = 0;
 		
 		private const _objects:					Vector.<EnvironmentObject> = new Vector.<EnvironmentObject>;
+		private const _mobs:					Vector.<SimpleMobObject> = new Vector.<SimpleMobObject>;
 		private var _l:							uint;
 		private var _i:							uint;
 		
@@ -22,6 +25,14 @@ package game.core.game.world
 		{
 			_objects.push(object);
 			_l = _objects.length;
+			
+			_mobs.push( _objects );
+		}
+		
+		
+		public function getObjectList():Vector.<SimpleMobObject>
+		{
+			return _mobs;
 		}
 		
 		
@@ -32,17 +43,10 @@ package game.core.game.world
 		
 		public function update(ms:Number):void
 		{
-			//_lastUpdateValue += ms;
-			
-			//if(_lastUpdateValue >= UPDATE_PERIOD)
-			//{
-				for(_i = 0; _i < _l; _i++)
-				{
-					_objects[_i].move(ms);
-				}
-				
-				//_lastUpdateValue = 0;
-			//}
+			for(_i = 0; _i < _l; _i++)
+			{
+				_objects[_i].move(ms);
+			}
 		}
 	}
 }

@@ -168,13 +168,13 @@ package game.view.displayList.game
 						
 			if(mobsContainer.indexOf(_viewElement) == -1)
 			{
-				mobsContainer[obj[0].data.envObjectID] = _viewElement;
+				mobsContainer[obj[0].data.objectID] = _viewElement;
 				_contentContainer.addChild(_viewElement);			
 			}		
 			
 			for (var i:int = 0; i < mobsContainer.length; i++) 
 			{
-				if(i == obj[0].data.envObjectID)
+				if(i == obj[0].data.objectID)
 				{
 					mobsContainer[i].x = obj[0].data.x*cellSize;
 					mobsContainer[i].y = obj[0].data.y*cellSize;
@@ -186,7 +186,7 @@ package game.view.displayList.game
 		{
 			for (var i:int = 0; i < mobsContainer.length; i++) 
 			{
-				if(i == obj.envObjectID)
+				if(i == obj.objectID)
 				{
 					mobsContainer[i].x = obj.x*cellSize;
 					mobsContainer[i].y = obj.y*cellSize;

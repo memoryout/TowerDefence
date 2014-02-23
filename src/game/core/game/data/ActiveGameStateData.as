@@ -2,19 +2,18 @@ package game.core.game.data
 {
 	import game.core.game.data.notifications.NotificationData;
 	import game.core.game.data.notifications.NotificationType;
-	import game.core.game.world.mobs.SimpleMobObject;
+	import game.core.game.objects.mob.SimpleMobObject;
+	import game.core.game.world.Environment;
 
 	public class ActiveGameStateData
 	{
-		public var mobsList:			Vector.<SimpleMobObject>;
-		
 		public var coreTime:			uint;
 		public var coreFrame:			uint;
 		
 		public var currentFrameTime:	uint;
 		public var viewTime:			uint;
 		
-		public const notifications:		Vector.<NotificationData> = new Vector.<NotificationData>;
+		private var _environment:		Environment;
 		
 		public function ActiveGameStateData()
 		{
@@ -22,11 +21,14 @@ package game.core.game.data
 		}
 		
 		
+		public function setEnvironment(environment:Environment):void
+		{
+			_environment = environment;
+		}
+		
+		
 		public function startNewGame():void
 		{
-			mobsList = new Vector.<SimpleMobObject>;
-			notifications.length = 0;
-			
 			coreTime = 0;
 			coreFrame = 0;
 			viewTime = 0;
@@ -35,19 +37,19 @@ package game.core.game.data
 		
 		public function flushNotifications():void
 		{
-			notifications.length = 0;
+			_environment.getNotificationList().length = 0;
 		}
 		
 		
-		public function addMob(mob:SimpleMobObject):void
+		public function get notifications():Vector.<NotificationData>
 		{
-			mobsList.push(mob);
-			
-			var notification:NotificationData = new NotificationData();
-			notification.type = NotificationType.CREATE_MOB;
-			notification.data = mob;
-			
-			notifications.push(notification);
+			return _environment.getNotificationList();
+		}
+		
+		
+		public function get mobsList():Vector.<SimpleMobObject>
+		{
+			return _environment.getMobList();
 		}
 	}
 }

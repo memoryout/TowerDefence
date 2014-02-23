@@ -4,18 +4,20 @@ package game.core.game.world
 	{
 		private static var _objectsId:			uint = 0;
 		
+		protected var environment:				Environment;
 		
 		private var _id:			uint;
 		private var _creationTime:	uint;
 		private var _x:				Number;
 		private var _y:				Number;
 		
+		
 		public function EnvironmentObject()
 		{
 			_id = _objectsId ++;
 		}
 		
-		public function get envObjectID():uint
+		public function get objectID():uint
 		{
 			return _id;
 		}
@@ -76,6 +78,13 @@ package game.core.game.world
 		public function get y():Number
 		{
 			return _y;
+		}
+		
+		
+		
+		public function addToEnvironment(environment:Environment):void
+		{
+			this.environment = environment;
 		}
 	}
 }
