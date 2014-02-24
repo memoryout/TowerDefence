@@ -4,6 +4,7 @@ package game.control
 	import broadcast.message.MessageData;
 	
 	import flash.display.Stage;
+	import flash.events.Event;
 	
 	import game.GameCommands;
 	import game.control.boot.AppBootTask;
@@ -19,6 +20,8 @@ package game.control
 	import game.view.ViewRootModule;
 	import game.view.displayList.menu.MenuData;
 	import game.view.events.MenuEvents;
+	
+	import utils.updater.Updater;
 	
 	public class AppRootModule extends BroadcastModule
 	{
@@ -47,6 +50,8 @@ package game.control
 			bootTask.addListener(TaskEvent.COMPLETE, handlerBootComplete);
 			
 			bootTask.run( stage, _viewModule, _mainViewController, _mainGameController );
+			
+			initUpdater(stage);
 		}
 		
 		
@@ -81,6 +86,18 @@ package game.control
 		private function handlerStartupError(task:SimpleTask):void
 		{
 			task.destroy();
+		}
+		
+		
+		private function initUpdater(stage:Stage):void
+		{
+			new Updater().init();
+			stage.addEventListener(Event.ENTER_FRAME, handlerEnterFrame);
+		}
+		
+		private function handlerEnterFrame(e:Event):void
+		{
+			Updater.get().update();
 		}
 	}
 }
