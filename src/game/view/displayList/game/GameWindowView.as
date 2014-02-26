@@ -170,28 +170,18 @@ package game.view.displayList.game
 			{
 				mobsContainer[obj[0].data.objectID] = _viewElement;
 				_contentContainer.addChild(_viewElement);			
-			}		
-			
-			for (var i:int = 0; i < mobsContainer.length; i++) 
-			{
-				if(i == obj[0].data.objectID)
-				{
-					mobsContainer[i].x = obj[0].data.x*cellSize;
-					mobsContainer[i].y = obj[0].data.y*cellSize;
-				}
-			}						
+			}			
+			_viewElement.x = obj[0].data.x*cellSize;
+			_viewElement.y = obj[0].data.y*cellSize;			
 		}
 		
 		public function updateMobMove(obj:Object):void
 		{
-			for (var i:int = 0; i < mobsContainer.length; i++) 
+			if(mobsContainer[obj.objectID])
 			{
-				if(i == obj.objectID)
-				{
-					mobsContainer[i].x = obj.x*cellSize;
-					mobsContainer[i].y = obj.y*cellSize;
-				}
-			}	
+				mobsContainer[obj.objectID].x = obj.x*cellSize;
+				mobsContainer[obj.objectID].y = obj.y*cellSize;
+			}			
 		}
 		
 		private function addMobToView():void
