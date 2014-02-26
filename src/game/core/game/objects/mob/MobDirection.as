@@ -1,6 +1,6 @@
 package game.core.game.objects.mob
 {
-	public class MobDirrection
+	public class MobDirection
 	{
 		public static const IDLE:		uint = 0;
 		public static const RIGHT:		uint = 1;

@@ -22,7 +22,7 @@ package game.core.game.objects.mob
 		public var vx:					Number;
 		public var vy:					Number;
 		
-		public var dirrection:			uint = MobDirrection.IDLE;
+		public var direction:			uint = MobDirection.IDLE;
 		
 		public function SimpleMobObject()
 		{
@@ -80,7 +80,7 @@ package game.core.game.objects.mob
 			var delatValue:Number = 0;
 			var deltaTime:Number = 0;
 			
-			if(dirrection == MobDirrection.RIGHT && newX >= _nextPoint.x)
+			if(direction == MobDirection.RIGHT && newX >= _nextPoint.x)
 			{
 				delatValue = _nextPoint.x - x;
 				deltaTime = delatValue/vx;
@@ -97,7 +97,7 @@ package game.core.game.objects.mob
 				}
 				
 			}
-			else if(dirrection == MobDirrection.LEFT && newX <= _nextPoint.x)
+			else if(direction == MobDirection.LEFT && newX <= _nextPoint.x)
 			{
 				delatValue = x - _nextPoint.x;
 				deltaTime = delatValue/vx;
@@ -113,7 +113,7 @@ package game.core.game.objects.mob
 					return;
 				}
 			}
-			else if(dirrection == MobDirrection.DOWN && newY >= _nextPoint.y)
+			else if(direction == MobDirection.DOWN && newY >= _nextPoint.y)
 			{
 				delatValue = _nextPoint.y - y;
 				deltaTime = delatValue/vy;
@@ -129,7 +129,7 @@ package game.core.game.objects.mob
 					return;
 				}
 			}
-			else if(dirrection == MobDirrection.UP && newY <= _nextPoint.y)
+			else if(direction == MobDirection.UP && newY <= _nextPoint.y)
 			{
 				delatValue = y - _nextPoint.y;
 				deltaTime = delatValue/vy;
@@ -177,11 +177,11 @@ package game.core.game.objects.mob
 				vx = dx/totalTime;
 				vy = dy/totalTime;
 				 
-				if(vx > 0) dirrection = MobDirrection.RIGHT;
-				if(vx < 0) dirrection = MobDirrection.LEFT;
+				if(vx > 0) direction = MobDirection.RIGHT;
+				if(vx < 0) direction = MobDirection.LEFT;
 				
-				if(vy > 0) dirrection = MobDirrection.DOWN;
-				if(vy < 0) dirrection = MobDirrection.UP;
+				if(vy > 0) direction = MobDirection.DOWN;
+				if(vy < 0) direction = MobDirection.UP;
 			}
 			else
 			{

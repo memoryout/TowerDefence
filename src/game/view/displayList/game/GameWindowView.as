@@ -8,6 +8,7 @@ package game.view.displayList.game
 	import flash.text.TextField;
 	import flash.ui.Mouse;
 	
+	import game.core.game.objects.mob.MobDirection;
 	import game.view.displayList.menu.PrimaryWindow;
 	
 	public class GameWindowView extends PrimaryWindow
@@ -43,6 +44,8 @@ package game.view.displayList.game
 		
 		private var pauseButton:				MovieClip;
 		private var playButton:					MovieClip;
+		
+		private var currentDirection:			int;
 		
 		public function GameWindowView(contentContainer:Sprite, controller:GameWindowController)
 		{
@@ -172,7 +175,9 @@ package game.view.displayList.game
 				_contentContainer.addChild(_viewElement);			
 			}			
 			_viewElement.x = obj[0].data.x*cellSize;
-			_viewElement.y = obj[0].data.y*cellSize;			
+			_viewElement.y = obj[0].data.y*cellSize;	
+			
+			startAnimationDependOnDirection(_viewElement, obj[0].data.direction);			
 		}
 		
 		public function updateMobMove(obj:Object):void
@@ -181,7 +186,38 @@ package game.view.displayList.game
 			{
 				mobsContainer[obj.objectID].x = obj.x*cellSize;
 				mobsContainer[obj.objectID].y = obj.y*cellSize;
+				
+				startAnimationDependOnDirection(mobsContainer[obj.objectID], obj.direction);
 			}			
+		}
+		
+		private function startAnimationDependOnDirection(mcObject:MovieClip, direction:int):void
+		{		
+			if(currentDirection == direction) return;
+			
+			var lable:String;
+			
+			if(direction == MobDirection.RIGHT)		lable = "right_start";		
+			else if(direction == MobDirection.UP)	lable = "up_start";		
+			else if(direction == MobDirection.DOWN)	lable = "down_start";		
+					
+			mcObject.gotoAndPlay(lable);		
+			currentDirection = direction;
+			
+			trace(direction);
+			
+			mcObject.addEventListener(Event.ENTER_FRAME, checkCurrentLable);			
+		}
+		
+		private function checkCurrentLable(e:Event):void
+		{
+			var lable:String;
+			
+			if(e.currentTarget.currentFrameLabel == "right_end")		lable = "right_start";			
+			else if(e.currentTarget.currentFrameLabel == "up_end")		lable = "up_start";				
+			else if(e.currentTarget.currentFrameLabel == "down_end")	lable = "down_start";				
+			
+			if(lable) e.currentTarget.gotoAndPlay(lable);
 		}
 		
 		private function addMobToView():void
