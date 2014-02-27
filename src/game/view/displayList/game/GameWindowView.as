@@ -28,6 +28,7 @@ package game.view.displayList.game
 		
 		private var _controller:				GameWindowController;
 		
+		private var mobsNameContainer:			Array;
 		private var mobsContainer:				Array;
 		
 		private var _buttonContianer:			MovieClip;	
@@ -44,9 +45,7 @@ package game.view.displayList.game
 		
 		private var pauseButton:				MovieClip;
 		private var playButton:					MovieClip;
-		
-		private var currentDirection:			int;
-		
+				
 		public function GameWindowView(contentContainer:Sprite, controller:GameWindowController)
 		{
 			_contentContainer = contentContainer;
@@ -69,7 +68,8 @@ package game.view.displayList.game
 		
 		public function addContainerToView():void
 		{
-			mobsContainer = new Array();
+			mobsContainer 	  = new Array();
+			mobsNameContainer = new Array();
 			
 			var _viewClass:Class = ApplicationDomain.currentDomain.getDefinition( CLASS_NAME) as Class;
 			var _viewElement:MovieClip = new _viewClass();
@@ -165,64 +165,35 @@ package game.view.displayList.game
 		}		
 		
 		public function updateMobsNotification(obj:Object):void
-		{			
-			var _viewClass:Class = ApplicationDomain.currentDomain.getDefinition(obj[1]) as Class;
-			var _viewElement:MovieClip = new _viewClass();	
-						
-			if(mobsContainer.indexOf(_viewElement) == -1)
+		{						
+			if(mobsNameContainer.indexOf(obj[0].data.objectID) == -1)
 			{
-				mobsContainer[obj[0].data.objectID] = _viewElement;
-				_contentContainer.addChild(_viewElement);			
-			}			
-			_viewElement.x = obj[0].data.x*cellSize;
-			_viewElement.y = obj[0].data.y*cellSize;	
-			
-			startAnimationDependOnDirection(_viewElement, obj[0].data.direction);			
+				mobsNameContainer.push(obj[0].data.objectID);			
+				
+				var _mobView:MobView = new MobView();
+				_mobView.createMobe(obj[1]);
+				
+				_contentContainer.addChild(_mobView);	
+				mobsContainer.push(_mobView);
+				
+				_mobView.x = obj[0].data.x*cellSize;
+				_mobView.y = obj[0].data.y*cellSize;					
+			}				
 		}
 		
 		public function updateMobMove(obj:Object):void
 		{
-			if(mobsContainer[obj.objectID])
+			if(mobsNameContainer.indexOf(obj.objectID) != -1)
 			{
 				mobsContainer[obj.objectID].x = obj.x*cellSize;
 				mobsContainer[obj.objectID].y = obj.y*cellSize;
 				
-				startAnimationDependOnDirection(mobsContainer[obj.objectID], obj.direction);
+				if(mobsContainer[obj.objectID] && mobsContainer[obj.objectID].currentDirection != obj.direction)
+				{
+					mobsContainer[obj.objectID].currentDirection = obj.direction;
+					mobsContainer[obj.objectID].updateDirection(mobsContainer[obj.objectID], obj.direction);
+				}
 			}			
-		}
-		
-		private function startAnimationDependOnDirection(mcObject:MovieClip, direction:int):void
-		{		
-			if(currentDirection == direction) return;
-			
-			var lable:String;
-			
-			if(direction == MobDirection.RIGHT)		lable = "right_start";		
-			else if(direction == MobDirection.UP)	lable = "up_start";		
-			else if(direction == MobDirection.DOWN)	lable = "down_start";		
-					
-			mcObject.gotoAndPlay(lable);		
-			currentDirection = direction;
-			
-			trace(direction);
-			
-			mcObject.addEventListener(Event.ENTER_FRAME, checkCurrentLable);			
-		}
-		
-		private function checkCurrentLable(e:Event):void
-		{
-			var lable:String;
-			
-			if(e.currentTarget.currentFrameLabel == "right_end")		lable = "right_start";			
-			else if(e.currentTarget.currentFrameLabel == "up_end")		lable = "up_start";				
-			else if(e.currentTarget.currentFrameLabel == "down_end")	lable = "down_start";				
-			
-			if(lable) e.currentTarget.gotoAndPlay(lable);
-		}
-		
-		private function addMobToView():void
-		{
-			
-		}
+		}				
 	}
 }
